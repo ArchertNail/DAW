@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>DWEC06 - SOLUCION TAREA</title>
+<link type="text/css" rel="stylesheet" href="estilos.css" />
+
+<script>
+    
+function tabla(){
+    var demo=document.getElementById('zonadibujo');
+    var tabla=document.createElement('table');
+    tabla.border='1';
+    
+    for(var i=0; i<30; i++){
+        
+        var fila=document.createElement('tr');
+        
+        for(var j=0; j<30;j++){
+            
+            var columna=document.createElement('td');
+            columna.width='10px';
+            columna.height='10px';
+            columna.addEventListener("click", function(){TdSeleccionado(this)}); 
+            fila.appendChild(columna);
+        }
+        
+        tabla.appendChild(fila);
+    }
+    
+    document.getElementById('zonadibujo').appendChild(tabla);
+}
+    
+function ColorSeleccionado(color){
+    
+    var paleta=document.getElementById('paleta').children[1].children[0];
+    
+    for(var i=0; i<paleta.children.length;i++){
+        
+        paleta.children[i].className="color"+(i+1);   
+    }
+    
+    color.className+=" seleccionado";
+}
+    
+function TdSeleccionado(td){
+    
+    var paleta=document.getElementById('paleta').children[1].children[0];
+    
+    for(var i=0; i<paleta.children.length; i++){
+           
+        if (paleta.children[i].classList[1]=="seleccionado"){
+           
+            td.className=paleta.children[i].classList[0];
+        }
+    }
+    
+    
+}
+    
+</script>    
+     
+</head>
+<body onload="tabla()">
+<p>TABLERO DE DIBUJO EN JAVASCRIPT</p>
+    
+    
+<table width="500" border="1" id="paleta" summary="Tabla de selección de colores">
+  <caption>
+    Haga click en un color para comenzar a pintar
+  </caption>
+    
+  <tr>
+      <td class="color1 seleccionado" onclick="ColorSeleccionado(this)"></td>
+      <td class="color2" onclick="ColorSeleccionado(this)"></td>
+      <td class="color3" onclick="ColorSeleccionado(this)"></td>
+      <td class="color4" onclick="ColorSeleccionado(this)"></td>
+      <td class="color5" onclick="ColorSeleccionado(this)"></td>
+      <td class="color6" onclick="ColorSeleccionado(this)"></td>
+  </tr>
+  <tr>    
+     <td colspan="6" id="pincel">Estado del pincel</td>
+  </tr>   
+</table>
+    
+<p></p>
+    
+<div id="zonadibujo"></div>
+
+</body>
+</html>

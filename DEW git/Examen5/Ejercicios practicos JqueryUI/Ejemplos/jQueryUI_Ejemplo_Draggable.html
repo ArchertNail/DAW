@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Probando el comportamiento draggable de jQueryUI</title>
+	<link type="text/css" href="jquery-ui-1.11.4.custom/jquery-ui.css" rel="Stylesheet" id="linkestilo" />
+	<style type="text/css">
+	body{
+		font-family: sans-serif;
+	}
+	#micapa{
+		width: 160px;
+		padding: 7px;
+		font-size: 10px;
+		font-weight: bold;
+		text-align: center;
+	}
+    #padremicapa{
+       width: 500px;
+       height: 300px;
+       border: 1px solid #ccc;
+       overflow: auto; // para que aparezca scroll
+    }
+    .ui-draggable {background: red}
+    .ui-draggable-dragging { background: blue}       
+	</style>
+    <script src="jquery-ui-1.11.4.custom/external/jquery/jquery.js"></script>
+    <script src="jquery-ui-1.11.4.custom/jquery-ui.js"></script>   	
+
+</head>
+<body>
+    <div id="padremicapa">
+        <div id="micapa" class="ui-corner-all ui-state-highlight">Prueba a arrastrar la capa</div>
+    </div>
+    
+    
+    <div id="log" class="ui-corner-all ui-state-highlight"></div>    
+	<script type="text/javascript">
+		$(document).ready(function(){
+            $("#micapa").draggable({
+                 cursor: 'move',	  //cambiamos la punta de flecha del ratón por una cruz
+                 delay: 500,     //retrasamos el arrastre
+                 distance: 50,    //indica el espacio en píxeles a partir del cual el elemento se mueve
+                 grid: [200,50],   //se mueve en una rejilla de 200px de ancho por 50px de alto
+                 containment: 'parent' //limitamos el arrastre dentro del padre. Puede ser: document, window o coordenadas [x1,y1,x2,y2]               
+            });
+            
+            $("#micapa").draggable({
+               start: function(){
+                  $("#log").html("Evento start");
+               }
+            });
+            
+            //Usando el método bind
+            $("#micapa").bind("drag", function(evento, ui){
+               $("#log").html("Evento drag");
+            });
+            $("#micapa").bind("dragstop", function(evento, ui){
+               $("#log").html("Evento stop");
+            });  
+
+            $("#micapa").draggable({
+               drag: function(event, ui){
+                  ui.helper.html("Estoy siendo arrastrado");
+               }
+            })
+            
+           // $("#micapa").draggable("disable");
+            $("#micapa").draggable("option", "revert", true);
+            elementoDraggable = $("#micapa").draggable("widget");
+           // $("#micapa").draggable("destroy");          
+            
+		})
+     
+	</script>    
+</body>
+</html>

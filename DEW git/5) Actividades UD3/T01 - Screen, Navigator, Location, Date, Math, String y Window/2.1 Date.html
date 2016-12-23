@@ -1,0 +1,61 @@
+<!doctype html>                              
+<html>
+<head>
+<meta charset="utf-8">
+<title>DATE </title>
+
+    
+<script type="text/javascript">
+        
+    function Apartado01(){
+     
+        var fecha = new Date();
+        
+        var dias = ["Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"];
+        
+        for (var i=0; i<dias.length;i++){
+            
+            if (i == fecha.getDay()-1){
+                
+                var diasemana=dias[i];
+            }
+            
+        }
+        
+        alert("Hoy es: " + diasemana + " " + fecha.getDate() + "\n" + "Hora: " +fecha.getHours() + ":" + fecha.getMinutes());
+        
+    }
+    
+    function Apartado02(){
+        
+        var fecha = new Date();
+        
+        var fecha1 = prompt("Introduce una fecha: mm/dd/aa(separar con:'/') ");
+        
+        
+        
+            var fecha1 = fecha1.split('/').map(Number); //el metodo Split separa la cadena con el caracter que queramos convirtiendola                                                             en un array. y el metodo Map en este caso lo pasa a Int el array completo.
+
+            var mes = Math.abs((fecha.getMonth()+1)-fecha1[0]); //Le sumamos 1 al mes pues extrañamente dice que Octubre es el mes 9
+            var dia = Math.abs(fecha.getDate()-fecha1[1]);
+            var anio = Math.abs(fecha.getFullYear()-fecha1[2]);
+
+            var diastotales = dia + (mes *30) + (anio * 365);
+
+            alert("Han pasado: " + diastotales + " dias");
+        
+    }
+    
+
+    
+    
+</script> 
+    
+</head>
+    
+<body onload="Apartado01()">
+    
+    <input type="button" value="Apartado2" onclick="Apartado02()"> <br>
+</body>
+    
+</html>

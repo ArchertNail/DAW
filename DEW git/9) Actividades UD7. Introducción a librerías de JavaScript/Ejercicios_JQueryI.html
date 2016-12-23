@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>jQuery Fundamentals :: Home</title>
+	<link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+
+	<style>
+	#blog p.excerpt { display: none; }
+	</style>
+    <script src="https://code.jquery.com/jquery-1.12.0.js"></script>
+    <script src="js/sandbox.js"></script>
+    <script>
+        $(document).ready(function(){
+            
+                                //           |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
+                //---------------------------|    1) SELECCIONES   |------------------
+                                //           |_____________________|
+            
+            //1,A)Seleccionar todos los elementos div que poseen la clase “module”
+            $(".module");
+            
+            //1,B)Especificar tres selecciones que puedan seleccionar el tercer ítem de la lista desordenada #myList. ¿Cuál es el mejor para utilizar? ¿Porqué?
+            $("#myList").next('li').next('li').next('li');
+            $("#myList li").eq(2);
+            $("#myList").children().eq(2);   //El children es mi favorita, es mas directa y no tienes que especificar a donde tienes que ir
+            
+            //1,C)Seleccionar el elemento label del elemento input utilizando un selector de atributo.
+            
+            $("label[for='q']"); //seleccionan los elementos 'label' con el elemento For
+            
+            //1,D)Averiguar cuantos elementos en la página están ocultos (ayuda: .length)
+            
+            $("body").children().length; //Hay dos div en la pagina
+            
+            //1,E)Averiguar cuantas imágenes en la página poseen el atributo alt.
+            
+            $('img[alt]').length;
+            
+            //1,F)Seleccionar todas las filas impares del cuerpo de la tabla.
+            
+            $("tr:odd").css("background-color", "red"); //No tira si parte del id de la tabla ¿porque?
+            
+            
+                    
+                                //           |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
+            //-------------------------------|   2) RECORRER DOM   | --------------------------------
+                                //           |_____________________|
+            
+            //2,A)Seleccionar todas las imágenes en la página; registrar en la consola el atributo alt de cada imagen.
+                    //Nose muy bien que pide:
+            
+            $("img").each(function(i){  //Necesitamos recorrer las etiquetas IMG pues hay mas de 1, sino solo obtendriamos el valor de la 1º IMG
+                
+                var AltImagen = $(this).attr('alt');
+                
+                console.log("ImgAlt"+i+"= " + AltImagen);  
+            });
+            
+            //2,B)Seleccionar el elemento input, luego dirigirse hacia el formulario y añadirle una clase al mismo.
+                
+            //$("input").parent()[0].className("peter"); No funciona porque?
+            $("input.input_text").parent().addClass("NewClass");
+            
+            //2,C) Seleccionar el ítem que posee la clase “current” dentro de la lista #myList y remover dicha clase en el elemento; luego añadir la clase “current” al siguiente ítem de la lista.
+
+            $("#myList .current").removeClass().next().addClass("current"); //Si la etiqueta class
+            
+            //2,D) Seleccionar el elemento select dentro de #specials; luego dirigirse hacia el botón submit.
+            
+            $("#specials").find("select").parent().next().children("[type='submit']"); //Magic de Corchet!!
+            
+            //2,E) Seleccionar el primer ítem de la lista en el elemento #slideshow; añadirle la clase “current” al mismo y luego añadir la clase “disabled” a los elementos hermanos.
+            
+                    //Dos formas de acceder al 1º Elemento 
+            $("#slideshow").children().eq(0); //usamos 'eq' para definir la posicion a la que vamos
+            $("#slideshow").children().first().addClass("current").siblings().addClass("disabled");
+            
+            
+                                /*           |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
+              -------------------------------|   3) MANIPULACIÓN   | --------------------------------
+                                             |_____________________|            */
+            
+            //3,A) Añadir 5 nuevos ítems al final de la lista desordenada #myList. 
+            for(var i=1; i<=5;i++){
+                
+                $("#myList").append("<li> item " + i + "</li>");
+            }
+            
+            //3,B) Remover los ítems impares de la lista.
+            $("#myList").find("li:odd").remove();
+            
+            //3,C) Añadir otro elemento h2 y otro párrafo al último div.module.
+            
+            $("div.module").last().append("<h2>Specials2</h2> <p>Otro Parrafo</p>");
+            
+            //3,D) Añadir otra opción al elemento select; darle a la opción añadida el valor “Wednesday”.
+            
+            $("Select").append("<option value='Wednesdat'>Wednesday</option>");
+            
+            //3,E)Añadir un nuevo div.module a la página después del último; luego añadir una copia de una de las imágenes existentes dentro del nuevo div.
+            $("#main").children().last().prev().before("<div class='module'><img src='images/fruit.jpg'></div>");
+            
+            
+                                /*           |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
+              -------------------------------|  4) CREAR UNA SUGERENCIA  | --------------------------------
+                                             |___________________________|            */
+            
+            //4,A)Establecer el valor del elemento input igual al valor del elemento label.
+            $("input.input_text").text($('label').text());
+            
+            //4,B)Añadir la clase “hint” al elemento input.
+            $("input.input_text").addClass("hint");
+            
+            //4.C)Remover el elemento label.
+            $("label").remove();
+            
+            //4,D)Vincular un evento focus en el input para remover el texto de sugerencia y la clase “hint”.
+            $("input.input_text").focus();
+            
+            //4,E)Vincular un evento blur en el input para restaurar el texto de sugerencia y la clase “hint” en caso que no se haya ingresado algún texto.
+            $("input.input_text").blur();
+            
+            
+                                /*           |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
+                -----------------------------|  5) NAVEGACION POR PESTAÑAS  | --------------------------------
+                                             |______________________________|            */
+            
+            //5,A)Ocultar todos los elementos div.module.
+            var $modules = $("div.module").hide();
+            
+            //5,B)Crear una lista desordenada antes del primer div.module para utilizar como pestañas.
+            var $nav =$("<ul/>").addClass("tabs").insertBefore($modules.eq(0));
+            
+            /*5,C)Interactuar con cada div utilizando $.fn.each. Por cada uno, utilizar el texto del elemento h2 como el texto para el ítem de la lista desordenada.Vincular un evento click a cada ítem de la lista de forma que:
+                -muestre el div correspondiente y oculte el otro;
+                -añada la clase “current” al ítem seleccionado;
+                -remueva la clase “current” del otro ítem de la lista.
+            Finalmente mostrar la primera pestaña */
+            
+            $modules.each(function(){ 
+                var $module  = $(this);
+                var $texto = $module.find("h2").text();
+                var $tab = $("<li>"+$texto+"</li>").appendTo($nav);
+                $tab.click(function(){
+                    $tab.addClass("current").siblings().removeClass("current");
+                    $module.show().siblings('.module').hide();
+                });
+            });
+            
+            $modules.eq(0).show();
+            $nav.find("li:first").addClass("current");
+            
+                                /*           |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
+                -----------------------------|  6)MOSTRAR TEXTO OCULTO  |---------------------------------
+                                             |__________________________|            */
+            
+            /*6,A)Al hacer click en alguno de los titulares del div #blog, se debe mostrar el párrafo correspondiente con un efecto de deslizamiento;
+
+              6,B)Al hacer click en otro titular, se debe ocultar el párrafo mostrado con un efecto de deslizamiento y mostrar nuevamente el párrafo correspondiente también con un efecto de deslizamiento */
+            
+            var blogLi=$("div #blog").find("li");
+                blogLi.each(function(){ 
+                    $(this).click(function(){
+                        $(this).children("p").slideDown("slow");
+                        $(this).siblings().children("p").slideUp("slow");
+                    });
+                });
+            
+                                /*           |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
+                -----------------------------|  7)CREAR UN SLIDESHOW  |---------------------------------
+                                             |__________________________|            */
+            //7,A)Mover el elemento #slideshow a la parte superior de la página;
+            $("#slideshow").insertBefore("#header");
+            
+            //7,B)Escribir un código que permita mostrar los ítems de forma cíclica, mostrando un ítem por unos segundos, luego ocultándolo con un efecto fade out y mostrando el siguiente con un efecto fade in;
+            
+           $("nav li").hover(function(){
+               $(this).addClass("hover").find("ul").show();
+           }
+            function(){
+               $(this).removeClass("hover").find("ul").hide();
+           }
+           });
+            
+            
+        });
+    </script>
+</head>
+
+<body>
+	<div id="header">
+		<div id="logo" rel="logo"><a href="Ejercicios_JQueryI.html">jQuery Fundamentals</a></div>
+		<ul id="nav">
+			<li class="selected"><a href="http://docs.jquery.com">jQuery Docs</a></li>
+			<li><a href="#">Sandbox</a></li>
+			<li>Resources
+				<ul>
+					<li><a href="http://groups.google.com/group/jquery-en">Google Group</a></li>
+					<li><a href="http://stackoverflow.com">Stack Overflow</a></li>
+					<li><a href="http://delicious.com/rdmey/jquery-class">Delicious Bookmarks</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+
+	<div id="main">
+		<form id="search">
+			<label for="q">Enter search term</label>
+			<input type="text" name="q" class="input_text" />
+			<input type="submit" value="Go" />
+		</form>
+
+		<h1>Eat here.</h1>
+		<p>Lorem ipsum dolor sit amet, <a href="foo.html">consectetur adipisicing elit</a>, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+		<ul id="slideshow">
+			<li>
+				<h2 rel="yummy fruit!">Fruit</h2>
+				<img src="images/fruit.jpg" alt="fruit" />
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			</li>
+			<li>
+				<h2>Vegetables</h2>
+				<img src="images/vegetable.jpg" alt="vegetables" />
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			</li>
+			<li>
+				<h2>Bread</h2>
+				<img src="images/bread.jpg" alt="bread" />
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			</li>
+		</ul>
+
+		<ul id="myList">
+			<li>List item 1</li>
+			<li id="listItem_2" class="bar">List item 2</li>
+			<li id="myListItem">List item 3</li>
+			<li>List item 4</li>
+			<li class="current bar">List item 5</li>
+			<li>List item 6</li>
+			<li>List item 7</li>
+		</ul>
+
+		<div class="module" id="blog">
+			<h2>Blog</h2>
+			<ul>
+				<li>
+					<h3>Blog post 1</h3>
+					<p class="excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				</li>
+				<li>
+					<h3><a href="#">Blog post 2</a></h3>
+					<p class="excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				</li>
+				<li>
+					<h3><a href="#">Blog post 3</a></h3>
+					<p class="excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				</li>
+			</ul>
+		</div>
+
+		<div class="module" id="specials">
+			<h2>Specials</h2>
+			<p>Choose the day of the week to see the specials:</p>
+			<form action="#" method="get">
+				<ul>
+					<li>
+						<select name="day">
+							<option value="" selected>Select</option>
+							<option value="monday">Monday</option>
+							<option value="tuesday">Tuesday</option>
+							<option value="friday">Friday</option>
+						</select>
+					</li>
+					<li class="buttons">
+						<input type="submit" class="input_submit" value="Go" />
+					</li>
+				</ul>
+			</form>
+		</div>
+
+		<table id="fruits">
+			<thead>
+				<tr>
+					<th>Apples</th>
+					<th>Oranges</th>
+					<th>Pears</th>
+					<th>Nectarines</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td id="myTableCell">2</td>
+					<td>3</td>
+					<td>4</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>6</td>
+					<td>4</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>7</td>
+					<td>5</td>
+					<td>3</td>
+				</tr>
+				<tr>
+					<td>20</td>
+					<td>30</td>
+					<td>10</td>
+					<td>100</td>
+				</tr>
+			</tbody>
+		</table>
+
+
+	</div>
+
+
+
+</body>
+</html>

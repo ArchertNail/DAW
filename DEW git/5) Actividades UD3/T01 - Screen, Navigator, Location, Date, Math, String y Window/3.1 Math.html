@@ -1,0 +1,100 @@
+<!doctype html>                              
+<html>
+<head>
+<meta charset="utf-8">
+<title>MATH</title>
+    
+<script type="text/javascript">
+    
+
+    
+    function ApartadoA(){
+        
+        var num1 = parseInt(prompt("Introduce un numero"));
+        var num2 = parseInt(prompt("Introduce un numero"));
+        
+        if (isNaN(num1) || isNaN(num2)){
+            
+            alert("No introduzca caracteres");   
+        }
+        else{
+        
+        var neperiano = Math.log(num1);
+        var raizCuadrada=Math.sqrt(num1);
+        var potencia = Math.pow(num1,num2);
+        var CercanoMenor = Math.trunc(num1)-1;
+        var CercanoMayor= Math.trunc(num2)+1;
+        var Aleatoir0_1=Math.random();
+        var Aleatorio=Math.round(Math.random()*(num2-num1)+num1);
+        var seno=Math.sin(num2);
+        var coseno=Math.cos(num2);
+        var tangente=Math.tan(num2);
+        var absoluto=Math.abs(num1);
+        var maximo=Math.max(num1,num2);
+        var minimo=Math.min(num1,num2);
+        
+        
+        
+        document.write("Neperiano de ("+num1+")= " + neperiano + "<br>");
+        document.write("RaizCuadrada de ("+num1+")= " + raizCuadrada + "<br>");
+        document.write("Potencia de ("+num1+"<sup>"+num2+"</sup>)= " + potencia + "<br>");
+        document.write("Cercano menor de ("+num1+")= " + CercanoMenor + "<br>");
+        document.write("Cercano mayor de ("+num2+")= " + CercanoMayor + "<br>");
+        document.write("Aleatorio entrer(0 y 1)= " + Aleatoir0_1 + "<br>");
+        document.write("Aleatorio entre ("+num1 +" y "+ num2+")= " + Aleatorio + "<br>");
+        document.write("Funciones trigonométricas de ("+num2+"): <br>-Seno: "+seno+"<br>-Conseno: "+coseno+"<br>-Tangente: "+tangente+"<br>");
+        document.write("Valor absoluto de ("+num1+")= " + absoluto + "<br>");
+        document.write("Valor Maximo de ("+num1 +" y "+ num2+")= " + maximo + "<br>");
+        document.write("Valor Minimo de ("+num1 +" y "+ num2+")= " + minimo + "<br><br><br>");
+       
+        //Dentro de un TextArea seria así:
+        
+        var textarea=document.createElement("TEXTAREA");
+       
+        var datos = document.createTextNode("Neperiano de ("+num1+")= " + neperiano + "<br>"+
+                                           "RaizCuadrada de ("+num1+")= " + raizCuadrada + "<br>"+
+                                           "Potencia de ("+num1+"<sup>"+num2+"</sup>)= " + potencia + "<br>"+
+                                           "Cercano menor de ("+num1+")= " + CercanoMenor + "<br>"+
+                                           "Cercano mayor de ("+num2+")= " + CercanoMayor + "<br>"+
+                                           "Aleatorio entrer(0 y 1)= " + Aleatoir0_1 + "<br>"+
+                                           "Aleatorio entre ("+num1 +" y "+ num2+")= " + Aleatorio + "<br>"+
+                                           "Funciones trigonométricas de ("+num2+"): <br>-Seno: "+seno+"<br>-Conseno: "+coseno+"<br>-Tangente: "+tangente+"<br>"+
+                                           "Valor absoluto de ("+num1+")= " + absoluto + "<br>"+
+                                           "Valor Maximo de ("+num1 +" y "+ num2+")= " + maximo + "<br>"+
+                                           "Valor Minimo de ("+num1 +" y "+ num2+")= " + minimo + "<br>");
+        
+        textarea.appendChild(datos);
+        document.body.appendChild(textarea);
+        }
+    }
+    
+    function ApartadoB(){
+        
+        var lado1 = parseInt(prompt("Introduce un lado del triangulo"));
+        var lado2 = parseInt(prompt("Introduce otro lado del triangulo"));
+        
+        if(isNaN(lado1)||isNaN(lado2)){
+            
+            alert("No introduzca caracteres");
+            
+        }
+        else{
+        var hipotenusa = Math.sqrt(Math.pow(lado1,2)+Math.pow(lado2,2));
+        
+        alert("La hipotenusa del triangulo es: " + hipotenusa);
+        }
+    }
+
+    
+    
+</script> 
+    
+</head>
+    
+<body>
+    
+    <input type="button" value="ApartadoA" onclick="ApartadoA()"> <br>
+    <input type="button" value="ApartadoB" onclick="ApartadoB()"> <br>
+</body>
+    
+</html>

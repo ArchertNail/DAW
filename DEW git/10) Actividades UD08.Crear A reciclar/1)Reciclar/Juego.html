@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <title>jQuery UI Resizable functionality</title>
+      <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+      <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+      <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+       
+       <link href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" media="screen" rel="stylesheet" type="text/css" />
+       <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+      <!-- CSS -->
+      <style>
+         .ContenTexbox {
+            background:#b9cd6d;
+            border: 1px solid #DDDDDD;
+            color: #333333;
+            font-weight: bold;
+         }
+          .CapaBotones{
+              display: none;
+          }
+          
+          #CuboOrganico,#CuboPapel,#CuboVidrio{
+              height:300px;
+              width:300px;
+              margin-left: 90px;
+              float: left;
+          }
+          
+          #contenedor {margin-top: 120px; clear:both;float: left;}
+          
+          .Capa2{
+              display: none; 
+          }
+          
+      </style>
+      <!-- Javascript -->
+      <script>
+          var puntuacion=0;
+          var contador=0;
+          var TuNombre;
+          $(document).ready(function(){
+             
+              var TodasBasuras=["Vidrio01.jpg","Vidrio02.jpg","Vidrio03.jpg","Vidrio04.jpg","Papel01.jpg","Papel02.jpg","Papel03.jpg","Papel04.jpg","Organica01.jpg","Organica02.jpg","Organica03.jpg","Organica04.jpg"];
+              
+              $(function(){
+                  $("#resizable").resizable();
+              }); 
+             
+              $("#BotonForm").click(function(){
+                  var Nombre = $("#resizable").val();
+                  TuNombre=Nombre;
+                  if(Nombre.length==0){
+                      $("#NomMsgError").text("*Introduzca el Campo").css("color","red");  
+                  }
+                  else{
+                      $("#NomMsgError").text("");
+                      $("#Nivel").dialog({
+                          modal: true,
+                          buttons: {
+                            "Fácil": function() {
+                              Game(4);
+                              $( this ).dialog( "close" );
+                            },
+                            "Normal": function() {
+                                Game(7);
+                              $( this ).dialog( "close" );
+                            },
+                            "Difícil": function() {
+                                Game(9);
+                              $( this ).dialog( "close" );
+                            }
+                                
+                          }                          
+                      });
+                    }
+              });
+              
+              function Game(CantImagenes){
+                  puntuacion=CantImagenes;
+                  $("#Capa1").remove();
+                  $(".Capa2").css("display","block");
+                    for(var i=0; i<CantImagenes; i++){
+                        var Aleatorio= Math.round(Math.random()*TodasBasuras.length);
+                        var imagen=$("<img>");
+                        imagen.attr("src",TodasBasuras[Aleatorio]);
+                        imagen.css("height","70px");
+                        imagen.css("width","70px");
+                        var clase = imagen.attr("src").substring(0, imagen.attr("src").indexOf("0"));
+                        switch(clase) {
+                            case "Vidrio":
+                                imagen.addClass("Vidrio");
+                                break;
+                            case "Papel":
+                                imagen.addClass("Papel");
+                                break;
+                            case "Organica":
+                                imagen.addClass("Organico");
+                                break;
+                        }
+                        $("#contenedor").append(imagen);
+                    }
+                  $("#contenedor").children().draggable({
+                        cursor: 'move',	  
+                        containment: 'document',
+                        revert:true
+                    });
+                }
+                
+                    
+                      
+                    $("#CuboVidrio").droppable({
+                        accept: ".Vidrio",
+                        tolerance: "fit",
+                        drop: function( evento, ui ) {
+                            alert("VIDRIO!");
+                            toastr.success("1PUNTO",'<i>Éxito</i>');
+                            ui.helper.draggable({revert:false});
+                            ui.helper.draggable("disable");
+                            puntuacion--;
+                            contador++;
+                            if(puntuacion==0){
+                                $("#datos").text("Felcidades: " +TuNombre + " Puntuacion: " + contador);
+                                $("#Nivel2").dialog({
+                                    modal: true,
+                                    buttons: {
+                                        "Si": function() {
+                                            $( this ).dialog( "close" );
+                                            location.reload();
+                                        },
+                                        "No": function() {
+                                            $( this ).dialog( "close" );
+                                        }
+                                    }                          
+                                });
+                            }
+                        }
+                    });
+                    $("#CuboPapel").droppable({
+                        accept: ".Papel",
+                        tolerance: "fit",
+                        drop: function( evento, ui ) {
+                            alert("PAPEL!");
+                            toastr.success("1PUNTO",'<i>Éxito</i>');
+                            ui.helper.draggable({revert:false});
+                            ui.helper.draggable("disable");
+                            puntuacion--;
+                            contador++;
+                            if(puntuacion==0){
+                                $("#datos").text("Felcidades: " +TuNombre + " Puntuacion: " + contador);
+                                $("#Nivel2").dialog({
+                                    modal: true,
+                                    buttons: {
+                                        "Si": function() {
+                                            $( this ).dialog( "close" );
+                                            location.reload();
+                                        },
+                                        "No": function() {
+                                            $( this ).dialog( "close" );
+                                        }
+                                    }                          
+                                });
+                            }
+                        }   
+                    });
+                    $("#CuboOrganico").droppable({
+                        accept: ".Organico",
+                        tolerance: "fit",
+                        drop: function( evento, ui ){
+                            alert("Organico!");
+                            toastr.success("1PUNTO",'<i>Éxito</i>');
+                            ui.helper.draggable({revert:false});
+                            ui.helper.draggable("disable");
+                            puntuacion--;
+                            contador++;
+                            if(puntuacion==0){
+                                $("#datos").text("Felcidades: " +TuNombre + " Puntuacion: " + contador);
+                                $("#Nivel2").dialog({
+                                    modal: true,
+                                    buttons: {
+                                        "Si": function() {
+                                            $( this ).dialog( "close" );
+                                            location.reload();
+                                        },
+                                        "No": function() {
+                                            $( this ).dialog( "close" );
+                                        }
+                                    }                          
+                                });
+                            }
+                        }
+                    });
+              
+          });
+         
+          
+            
+      </script>
+   </head>
+
+   <body>
+       <div id="Capa1" style="width:400px;height:200px;margin: 0 auto;">
+           <form id="formu" name="formu">
+                <h1>Introduce tu Nombre: </h1>
+                <input type="text" id="resizable" class="ContenTexbox" max="100"/>
+                <input id="BotonForm" type="button" value="aceptar"><br>
+               <label id="NomMsgError"></label>
+           </form>
+       </div>
+       <div id="Nivel" title="Nivel" class="CapaBotones">
+           Selecciona nivel
+       </div>
+       
+       <div class="Capa2">
+           <div id="CubosReciclaje">
+                <div id="CuboVidrio" >
+                    <img src="Vidrio.jpg">
+                </div>
+                <div id="CuboPapel" >
+                    <img src="Papel.jpg">
+                </div>
+               <div id="CuboOrganico">
+                    <img src="Organico.jpg">
+               </div>
+           </div>
+
+           <div id="contenedor">
+               
+           </div>
+       </div>
+       
+       <div id="Nivel2" title="HAS GANADO!" class="CapaBotones">
+           <p id="datos"></p>
+       </div>
+       
+  </body>
+</html>

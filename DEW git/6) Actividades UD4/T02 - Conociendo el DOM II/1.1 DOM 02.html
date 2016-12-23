@@ -1,0 +1,49 @@
+<html>
+<head>
+
+<style>
+ .opcion { float: left; margin: 0px;margin-right: 10px; border: 0px white solid; }
+ .seleccionada { color: white; background-color: red; border: 1px solid red;}
+ .no-seleccionada { color: red; background-color: white; }
+ .contenido {position: absolute; top: 28px;left: 10px; width: 800px; height: 400px; }
+ .oculto { visibility: hidden; border: 0px white solid; }
+ .visible { visibility: visible;border: 1px red solid;}
+</style>
+
+<script>
+ // La función cambiar oculta TODOS los contenidos y muestra el de la sección indicada
+function cambiar(seccion) { 
+    
+    
+    for(var i=0;i<4;i++){
+        
+        document.getElementsByTagName("div")[i].setAttribute("class","opcion no-seleccionada");
+    }
+    for(var i=4;i<8;i++){
+        
+        document.getElementsByTagName("div")[i].setAttribute("class","contenido oculto");
+    }
+
+    seccion.setAttribute("class","opcion seleccionada");
+    
+    var idcontenido="c"+seccion.id.slice(1,seccion.id.length);
+    
+    var contenidoSelect=document.getElementById(idcontenido);
+    contenidoSelect.setAttribute('class','contenido visible');
+}
+ </script>
+    
+</head>
+ <body>
+ 
+ <div class="opcion seleccionada" id="oPortada" onclick="cambiar(this)">Portada</div>
+ <div class="opcion no-seleccionada" id="oNacional" onclick="cambiar(this)">Nacional</div>
+ <div class="opcion no-seleccionada" id="oInternacional" onclick="cambiar(this)">Internacional</div>
+ <div class="opcion no-seleccionada" id="oDeportes" onclick="cambiar(this)">Deportes</div>
+ <div class="contenido visible" id="cPortada">Soy la portada</div>
+ <div class="contenido oculto" id="cNacional">Soy la sección Nacional</div>
+ <div class="contenido oculto" id="cInternacional">Soy la sección Internacional</div>
+ <div class="contenido oculto" id="cDeportes">Soy los deportes</div>
+ 
+ </body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>LocalStorage</title>
+<style>
+
+    
+</style>
+    
+<script>
+    
+function START(){
+    document.getElementById('Pregunta').innerHTML="";
+    document.getElementById('Respuesta').innerHTML="";
+    document.getElementById('Enviar').innerHTML="";
+    
+    var preguntas=["Como se llama spiderman", "Como se llama Batman","Como se llama IronMan"];
+    var respuesta=["peter", "batman", "Iron"];
+    var aleatorio = Math.abs( Math.round(Math.random()*2));
+    document.getElementById('Pregunta').innerHTML=preguntas[aleatorio];
+    
+    for (var i=0; i<respuesta[aleatorio].length;i++){
+        
+        var letra=respuesta[aleatorio].charAt(i);
+        if(aleatorio==0){
+            if (letra=='e'){
+                
+                letra='*';   
+            }
+        }
+        else if(aleatorio==1){
+            if (letra=='t'){
+                
+                letra='*';   
+            }
+        }
+        else if(aleatorio==2){
+            if (letra=='r'){
+                
+                letra='*';   
+            }
+        }
+        var x = document.createElement("INPUT");
+        x.setAttribute("type", "text");
+        if(letra!='*'){
+            x.readOnly=true;
+        }
+        x.maxLength='1';
+        x.size=1;
+        x.value=letra;
+        document.getElementById('Respuesta').appendChild(x);
+          
+    }
+    
+    var boton= document.createElement("button");
+    boton.textContent="Enviar";
+    document.getElementById('Enviar').appendChild(boton);
+    
+    if(boton.addEventListener){
+        boton.addEventListener('click', Resultado, false);
+        
+    }else{
+        boton.attachEvent('onclick', Resultado);
+    }
+    
+    function Resultado(){
+        var cadena="";
+        for(var i=0; i<respuesta[aleatorio].length;i++){
+            
+           var n=document.getElementById("Respuesta");
+           cadena+=n.childNodes[i].value; 
+        }
+        if(cadena==respuesta[aleatorio]){
+            
+           alert("CORRECTO");
+        }
+        else{
+         
+            alert("INCORRECTO");
+        }
+    }
+}
+    
+</script>    
+    
+</head>
+     
+<body>
+    <center>
+    <h1> AHORA CAIGO</h1>
+    </center>
+    <center>
+    <div id="preguntas">
+        <p id="Pregunta"></p>
+        <p id="Respuesta"></p>
+        <p id="Enviar"></p>
+    </div>
+    <div id="dificultad">
+        <input type="button" value="START" onclick="START()">
+    </div>
+    </center>
+</body>
+
+</html>

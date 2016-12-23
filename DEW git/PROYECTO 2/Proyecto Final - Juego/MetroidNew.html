@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=us-ascii">
+    <meta charset="utf-8">
+    <title>MetroidGame</title>
+    <link rel="stylesheet" type="text/css" href="CSS/Style.css">
+    
+    <script type="text/javascript" src="JS/PantCarga.js"></script>
+</head>
+    
+<body onload="intervalo=setInterval('cargar()',100)"> <!-- Aquí podemos iniciar nuestro juego --> 
+    
+    <script type="text/javascript" src="JS/Menu.js"></script>
+    
+    <div id="Pant_Carga" class="progress">
+        <p class="Text_Carga">Cargando...</p>
+        <div class="cargando">
+            <progress id="barra" value=0 max=100></progress>
+            <span></span>
+        </div>
+    </div>
+    
+    
+    <div id="game">
+        <div id="menu" class="frame hidden">
+            <h1>Inicio Juego</h1>
+            <button class="Boton_Opcion" id="RPoint" name="8" onclick="Menu(this.name)">Rt.Game</button>
+            <button class="Boton_Opcion" id="BtnManual" name="6" onclick="Menu(this.name)">Manual</button>
+            <button class="Boton_Opcion" id="BtnPuntos" name="9" onclick="Menu(this.name)">Points</button>
+            <button class="Boton_Menu" id="Mundo1" name="1" onclick="Menu(this.name)">Mundo 1</button>
+            <button class="Boton_Menu hidden" id="Mundo2" name="2" onclick="Menu(this.name)">Mundo 2</button>
+            <button class="Boton_Menu hidden" id="Mundo3" name="3" onclick="Menu(this.name)">Mundo 3</button>
+            <button class="Boton_Menu">SALIR</button>
+        </div>
+        <div id="Manual" class="frame hidden">
+            <div class="TitManual">Manual</div>
+            <div class="contenido">
+                <ul>
+                    <li>Mover PJ Izquierda --> Tecla de direccion Izquierda</li>
+                    <li>Mover PJ Derecha --> Tecla de direccion Derecha</li>
+                    <li>Agachar PJ --> Tecla de direccion Abajo</li>
+                    <li>Disparar --> Barra Espaciadora</li>
+                    <li>PAUSA --> Cualquier Tecla</li><br>
+                    <li>*Gana! y 'Desbloquea' nuevos Mundos</li>
+                </ul>
+                <button class="Boton_Menu" id="Volver" name="7" onclick="Menu(this.name)">Volver</button>
+            </div>
+        </div>
+        <div id="Puntos" class="frame hidden">
+            <div class="TituloPuntos"> Puntos: </div>
+            <div id="ValorPuntos" class="ContenidoPuntos"></div>
+            <button class="Boton_Menu" id="Volver" name="7" onclick="Menu(this.name)">Volver</button>
+        </div>
+        <div id="lienzo" class="frame hidden">
+            <canvas id="canvas" class="gameLayer" width="900" height="448"></canvas>
+        </div>
+        <div id="GameOver" class="frame hidden">
+            <h2>HAS PERDIDO</h2>
+            <button class="Boton_Menu" name="4" onclick="Menu(this.name)"> Menu! </button>
+        </div>
+        <div id="GameWin" class="frame hidden">
+            <h2>HAS GANADO</h2>
+            <button class="Boton_Menu" name="5" onclick="Menu(this.name)"> Menu!</button>
+        </div>
+        <div id="audio" class="frame">
+            <audio id="AuMenu" src="Audio/AudioMenu.mp3" loop="true"></audio>
+            <audio id="AuGame" src="Audio/AudioJuego.mp3" loop="true"></audio>
+            <audio id="Disparo" src="Audio/Disparo2.mp3"></audio>
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="JS/Game.js"></script>
+</body>
+</html>

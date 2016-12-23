@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>Examen</title>
+<script language="javascript">
+function setCookie(nombre,value,dias) {
+var expdate = new Date();
+expdate.setTime(expdate.getTime() + dias*24*60*60*1000);
+document.cookie = nombre+"="+encodeURIComponent (value)+"; expires=" + expdate.toUTCString();
+}
+function getCookie(nombre) {
+var index = document.cookie.indexOf(nombre+"=");
+if (index == -1)
+return null;
+index = document.cookie.indexOf("=", index) + 1;
+var endstr = document.cookie.indexOf(";", index);
+if (endstr == -1)
+endstr = document.cookie.length;
+return decodeURIComponent(document.cookie.substring(index, endstr));
+}
+</script>
+    
+<script>
+    
+    var ventana1= setTimeout(VentanaHija1,3000);
+    function VentanaHija1(){
+        
+        var ventana=window.open("","MsgWindow","width=500,height=350,resizable=false");
+        ventana.document.write("<h3> Ejemplo de ventana nueva por Killian </h3>");
+        ventana.document.write("<strong>URL: </strong>" + window.location + "<br><strong>Protocolo: </strong>" + location.protocol + "<br><center><strong>Navegador: </strong>" + navigator.appName + "</center><br>");
+        
+        if(navigator.javaEnabled()==true){
+            
+            ventana.document.write("JAVA esta habilitado");
+            ventana.document.bgColor="green";
+        }
+        else{
+            ventana.document.write("JAVA No esta habilitado");
+            ventana.document.bgColor="red";
+        }
+    }
+    
+    function ventana2(){
+        
+        var ventana2=window.open("file:///C:/Users/killianprot/Desktop/DEW/Examen2/Ventana2.html","MsgWindow","width=300, height=350,left=500, top=150");
+        
+       
+    }
+    function Limpiar(){
+        
+        localStorage.nombres="";
+        localStorage.fechas="";
+        setCookie('sumatorio',MaxAge,time()-1000);
+    }
+    
+    function Historial(){
+        document.getElementById("historial").innerHTML="<h1>Historial</h1>";
+        document.getElementById("historial").innerHTML+="Nombres: " +localStorage.nombres+ "<br> Fechas: " + localStorage.fechas;
+    }
+    
+</script>    
+    
+</head>
+     
+<body>
+    
+    <input type="button" onclick="ventana2()" value="Ventana2">
+     <input type="button" onclick="Historial()" value="historial">
+     <input type="button" onclick="Limpiar()" value="Limpiar">
+    
+    <p id="local"></p> 
+    <p id="contador"></p>
+    <p id="historial"></p>
+</body>
+
+</html>

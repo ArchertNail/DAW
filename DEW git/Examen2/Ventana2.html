@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>Examen</title>
+<script language="javascript">
+function setCookie(nombre,value,dias) {
+var expdate = new Date();
+expdate.setTime(expdate.getTime() + dias*24*60*60*1000);
+document.cookie = nombre+"="+encodeURIComponent (value)+"; expires=" + expdate.toUTCString();
+}
+function getCookie(nombre) {
+var index = document.cookie.indexOf(nombre+"=");
+if (index == -1)
+return null;
+index = document.cookie.indexOf("=", index) + 1;
+var endstr = document.cookie.indexOf(";", index);
+if (endstr == -1)
+endstr = document.cookie.length;
+return decodeURIComponent(document.cookie.substring(index, endstr));
+}
+</script>
+    
+    
+<p id="demo"></p>    
+<script>
+    
+    document.write("<h2>Killian Ramos Deniz</h2>");
+    
+    var fechaActual= new Date();
+    
+    var nombre=prompt("Introduzca nombre y apellidos");
+    var diaN=parseInt(prompt("Introduce el dia de nacimiento"));
+    
+    if(diaN>30 || diaN<0 || isNaN(diaN)){
+        
+        alert("Introduzca bien el Dia en el que Nacio");   
+    }
+    else{
+        
+        var mesN=parseInt(prompt("Introduce El mes de nacimiento"));
+        if(mesN>12 || mesN<0 || isNaN(mesN)){
+         
+            alert("No ha introducido correctamente el mes de nacimiento");
+        }
+        else{
+            var anioN=parseInt(prompt("Introduce el anio de nacimiento"));
+            if(anioN<0 || isNaN(anioN)){
+         
+                alert("No ha introducido correctamente el anio en el que nacio");
+            }
+            else{
+                
+                if(anioN>fechaActual.getFullYear()){
+                       
+                    alert("ERROR");
+                }
+                else if(anioN==fechaActual.getFullYear() && mesN>(fechaActual.getMonth()+1)){
+                    alert("ERROR");  
+                }
+                else if(anioN==fechaActual.getFullYear() && mesN==fechaActual.getMonth() && diaN>fechaActual.getDate()){
+                    
+                    alert("ERROR");
+                    
+                }
+                else{
+                    
+                    alert("HAS INTRODUCIDO LA FECHA CORRECTAMENTE");
+                    
+                }
+            }
+        }
+    }
+    
+    
+    function borrar(){ 
+        
+        localStorage.nombres+=nombre+", ";
+        localStorage.fechas+=diaN+"/"+mesN+"/"+anioN+", ";
+        var contador=1;
+        var cadena="";
+        localStorage.nombre=nombre;
+        localStorage.dia=diaN;
+        localStorage.mes=mesN;
+        localStorage.anio=anioN;
+        
+        var Lnombre=localStorage.nombre;
+        var Ldia=localStorage.dia;
+        var Lmes=localStorage.mes;
+        var Lanio=anioN;
+        parent.window.opener.document.getElementById("local").innerHTML = "Buenos Dias " + localStorage.nombre +"<br>Tu nombre tiene: " + localStorage.nombre.length + "caracteres <br>";
+        for(var i=0; i<Lnombre.length;i++){
+            
+            var letra=Lnombre.charAt(i);
+            if(letra=='a' || letra=='A'){
+                parent.window.opener.document.getElementById("local").innerHTML+="La letra A se encuentra en la posicion: " + contador +"<br>";
+                break;
+            }
+            contador++;
+        }
+        for(var i=3;i<Lnombre.length;i++){
+         
+            cadena+=Lnombre.charAt(i);
+             
+        }
+        parent.window.opener.document.getElementById("local").innerHTML+="Tu nombre menos las 3 primeras letras es:" + cadena +"<br>";
+        parent.window.opener.document.getElementById("local").innerHTML+="Tu nombre y apellido todo en Mayuscula es:" + Lnombre.toUpperCase() +"<br>";
+        
+        var edad = fechaActual.getFullYear() - anioN;
+        var mes = fechaActual.getMonth() - mesN;
+        parent.window.opener.document.getElementById("local").innerHTML+="Tu edad es: " + edad +"anios y " + mes +" meses<br>";
+        
+        var contador=getCookie("sumatorio");
+        if(contador==null){
+            contador=0;   
+            setCookie("sumatorio",contador,7); 
+                parent.window.opener.document.getElementById("contador").innerHTML="Visitante: Primera Sesion"; 
+        }
+        else{
+            contador++;   
+           setCookie("sumatorio",contador,7); 
+            parent.window.opener.document.getElementById("contador").innerHTML="Visitante numero: " + contador;
+        }
+        window.close();
+    }
+</script>    
+    
+</head>
+     
+<body>
+    <input type="button" onclick="borrar()" value="borrar">
+</body>
+
+</html>

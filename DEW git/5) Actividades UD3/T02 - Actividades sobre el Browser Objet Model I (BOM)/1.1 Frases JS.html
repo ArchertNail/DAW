@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<title>BOM</title>
+<script>
+        
+    function Actividad01(){
+ 
+        var repite = "generado desde JS un texto con distinto formato";
+        
+        var candena="";
+        candena+="Enlace <a href='#'>" + repite + " </a> <br>" ; 
+        candena+="Con un tamaño de fuente de 5px  <span style='font-size:5px'>" + repite + " </span> <br>";
+        candena+="Escribe un superindice <sup>" + repite + "</sup> <br>";
+        candena+="Escribe un subindice <sub>" + repite + "</sub> <br>";
+        candena+="Le damos formato cursiva <i>" + repite + "</i> <br>";
+        candena+="Y por ultimo algo de color <span style='color:red'>" + repite + "</span> <br>";
+        candena+="Y por ultimo algo de color y en cursiva <i> <span style='color:red'>" + repite + "</span></i>";
+        
+        document.getElementById("demo").innerHTML=candena;
+    }
+    
+    function Actividad02(){
+        
+        //Explore
+        
+        if (navigator.appName=="Miscroft Internet Explorer"){
+         
+            document.getElementById("demo").innerHTML="Internet Explore";
+        }
+        
+        else if ((navigator.userAgent.toLowerCase().indexOf("Opera"))>-1) {
+            
+            document.getElementById("demo").innerHTML="Opera";
+
+        }
+
+        else if ((navigator.userAgent.toLowerCase().indexOf("chrome"))>-1) {
+            
+            document.getElementById("demo").innerHTML="Chrome";
+         }
+
+        else if ((navigator.userAgent.toLowerCase().indexOf("safari"))>-1) {
+            
+             document.getElementById("demo").innerHTML="Safari";
+
+        }
+
+        else if ((navigator.userAgent.toLowerCase().indexOf("firefox"))>-1) {
+            
+             document.getElementById("demo").innerHTML="Firefox";
+         }
+    }
+    
+    function Actividad03(){
+        
+        var ventana = window.open("", "MsgWindow", "width=200, height=100");
+    
+        ventana.document.write("Ancho: " + window.innerWidth+ "<br>" +
+                       "Ancho2: " + window.outerWidth + "<br>" +
+                       "largo: " + window.innerHeight + "<br>" +
+                       "largo2: " + window.outerHeight + "<br>");
+    }
+    
+    function Actividad04(){
+        
+        document.write("<h4> Origen </h4>");
+        document.write("<button onclick='Actividad04_2()'>Click</button>");
+    }
+    
+    function Actividad04_2(){
+        
+        var ventana = window.open("", "MsgWindow", "width=250, height=150");    
+    
+        ventana.document.write(" <h4> Nueva </h4>");    
+        ventana.document.write("<h1> Nombre: Killian </h1>");
+        ventana.document.write("<h2> Apellido: Ramos </h2>");
+        var f = new Date();
+        ventana.document.write("<h3> Fecha: " + f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear() + "</h3>");        
+
+        ventana.document.write("Seleccione su Isla Canaria favorita:    ");
+
+        ventana.document.write("<select> <option id='Tenerife'>Tenerife</option> <option id='Las Palmas'>Las Palmas</option> <option id='Fuerteventura'     selected>Fuerteventura</option> <option id='Lanzarote'>Lanzarote</option> <option id='El Hierro'>El Hierro'</option> <option id='La Palma'>La Palma</option> <option id='La Gomera'>La Gomera</option> </select> <br> <br>");
+
+        
+    }
+    
+    function Actividad05(){//fallo
+        
+        var ventana01 = window.open("http://www.elpais.com");   
+        var ventana02 = ventana01.close("http://www.gobiernodecanarias.org");
+    }
+    
+    //Actividad06
+
+    function google(){
+ 
+    var google = window.open("http://www.google.es",""," top=1px, left=200px, width=200, height=200");
+
+    }
+
+    function todofp(){
+
+        var todofp = window.open("http://www.todofp.es","", "top=450px, left=50px, width=200, height=200");
+
+    }
+
+    function Cesar(){
+
+        var Cesar = window.open("http://cifpcesarmanrique.es","", "top=1px, left=325px, width=200, height=200");
+
+    }
+    
+    //Actividad07
+    
+    function colores(){
+        
+        var ventana = window.open("", "MsgWindow", "width=200, height=250");
+        
+        var color=document.getElementById("color").value;
+        color=color.toLowerCase();
+        
+       /* switch(color){
+                
+         case "azul":
+                ventana.document.bgColor="blue";
+                ventana.document.write("<h1>Este es el color elegido: AZUL</h1>");
+                break;
+         case "amarillo":
+                ventana.document.bgColor="yellow";
+                ventana.document.write("<h1>Este es el color elegido: AMARILLO</h1>");
+                break;
+         case "verde", "green":
+                ventana.document.bgColor="green";
+                ventana.document.write("<h1>Este es el color elegido: VERDE</h1>");
+                break;
+         case "rojo","red":
+                ventana.document.bgColor="red";
+                ventana.document.write("<h1>Este es el color elegido: ROJO</h1>");
+                break;
+         case "marron", "brown":
+                ventana.document.bgColor="brown";
+                ventana.document.write("<h1>Este es el color elegido: MARRON</h1>");
+                break;
+         case "negro","black":
+                ventana.document.bgColor="black";
+                ventana.document.write("<h1>Este es el color elegido: NARANJA</h1>");
+                break;
+         case "naranja","oranje":
+                ventana.document.bgColor="oranje";
+                ventana.document.write("<h1>Este es el color elegido: ORANJE</h1>");
+                break;
+                
+         default:
+                ventana.document.write("No has introducido una opcion valida");
+                break;
+        }*/
+        ventana.document.write("<h1>Este es el color elegido</h1>");
+        ventana.document.bgColor=color;
+
+        
+        
+    }
+        
+</script>
+        
+    
+</head>
+<body>
+    <input type="button" value="Actividad01" onclick="Actividad01()">
+    <input type="button" value="Actividad02" onclick="Actividad02()">
+    <input type="button" value="Actividad03" onclick="Actividad03()">
+    <input type="button" value="Actividad04" onclick="Actividad04()">
+    <input type="button" value="Actividad05" onclick="Actividad05()">
+    <a href="javascript:google()"> google </a> <a href="javascript:todofp()"> todofp</a>  <a href="javascript:Cesar()"> Cesar</a> <br><br><br>
+    Introduce color: <input type="text" id="color" value="red">
+        
+    <button onclick="colores()">click</button>
+    <p id="demo"></p>      
+</body>
+</html>

@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>Cookie Example</title>
+<script language="javascript">
+function setCookie(nombre,value,dias) {
+var expdate = new Date();
+expdate.setTime(expdate.getTime() + dias*24*60*60*1000);
+document.cookie = nombre+"="+encodeURIComponent (value)+"; expires=" + expdate.toUTCString();
+}
+function getCookie(nombre) {
+var index = document.cookie.indexOf(nombre+"=");
+if (index == -1)
+return null;
+index = document.cookie.indexOf("=", index) + 1;
+var endstr = document.cookie.indexOf(";", index);
+if (endstr == -1)
+endstr = document.cookie.length;
+return decodeURIComponent(document.cookie.substring(index, endstr));
+}
+</script>
+</head>
+    
+    
+<body>
+    <script language="javascript">
+        
+        var contador= getCookie("sumatorio");
+        var horaActual = getCookie("hora");
+        var h= new Date();
+        
+        if (contador == null || isNaN(contador)){
+            contador=0;
+            horaActual = h.toLocaleTimeString();
+            
+            setCookie("sumatorio",contador,30);
+            setCookie("hora",horaActual,30);
+            
+            alert("Contador = " + contador +"\n Hora: Primera sesion");
+        }
+        else{
+            contador++;
+            setCookie("sumatorio",contador,30);
+            alert ("Contador = " + contador +"\n Hora: " + horaActual);
+            horaActual = h.toLocaleTimeString();
+            setCookie("hora",horaActual,30);
+        }
+    function Borrar(){
+        document.cookie = "sumatorio=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+        document.cookie = "hora=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    }
+        
+    </script>
+    <input type="button" value="Borrar" onclick="Borrar()">
+</body>
+<html>

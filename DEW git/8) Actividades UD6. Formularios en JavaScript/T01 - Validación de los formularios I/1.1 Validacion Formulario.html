@@ -1,0 +1,225 @@
+<html>
+<head>
+  <title>Validacion de Formulario</title>
+    <script>
+    
+        function validar(){
+            
+            var todocorrecto=true;
+            
+            var Numeros = document.getElementById('valid').elements[0].value;
+            var Letras = document.getElementById('valid').elements[1].value;
+            var NumyLet = document.getElementById('valid').elements[2].value;
+            
+            var formulario= document.getElementsByName('Validacion')[0];
+        
+            document.getElementById('vacio').innerHTML="";
+            document.getElementById('ErrorMsgNum').innerHTML="";   
+            document.getElementById('ErrorMsgLet').innerHTML="";
+             document.getElementById('ErrorMsgNum_Let').innerHTML="";
+            
+            
+            if(Numeros.length==0){
+                document.getElementById('ErrorMsgNum').innerHTML="<strong>*Rellene el campo</strong>";
+                todocorrecto=false;
+            }
+            
+            else if (isNaN(Numeros)) {
+                document.getElementById('ErrorMsgNum').innerHTML="<strong>*No ha introducido un numero</strong>";
+                todocorrecto=false;
+            }
+            
+            if(Letras.length==0){
+                document.getElementById('ErrorMsgLet').innerHTML="<strong>*Rellene el campo</strong>";
+                todocorrecto=false;
+            }
+            else if (/^[A-Za-z\_\-\.\s\xF1\xD1]+$/.test(Letras)==false){
+                document.getElementById('ErrorMsgLet').innerHTML="<strong>*Ha introducido Numeros</strong>";
+                todocorrecto=false;
+            }
+            
+            if(NumyLet.length==0){
+                document.getElementById('ErrorMsgNum_Let').innerHTML="<strong>*Rellene el campo</strong>";
+                todocorrecto=false;
+            }
+            
+            
+            
+            return todocorrecto;
+        }
+        
+        
+        
+        
+        
+    // ------------------------Actividad 02 -------------------------------------   
+        
+        
+        
+        function LimiteTextarea(limite){  //cade vez que pulsemos una tecla dentro del textarea llamara a esta funcion enviandole como paramentro el 100, si es superior a 100 devolvera un falso, impidiendo usar la funcion Onkeypress que es la que nos permite escribir, okeypress= false;
+            
+            var elemento=document.getElementById('Direc').value;
+            
+            if (elemento.length > 100){
+                
+                return false;
+            }
+            
+            else{
+             
+                return true;
+            }
+            
+        }
+        
+        function formulario2(){
+            
+            var TodoCorrecto=true;
+            
+            var usuario=document.getElementById('user').value;
+            var nombre=document.getElementById('nom').value;
+            var telefono=document.getElementById('telef').value;
+            var correo=document.getElementById('email').value;
+            var opinion=document.getElementById('sug').value;
+            
+            document.getElementById('obligatorio').innerHTML="";
+            document.getElementById('ErrorMsgNombre').innerHTML="";
+            document.getElementById('ErrorMsgTelef').innerHTML="";
+            document.getElementById('ErrorMsgCorreo').innerHTML="";
+            
+            if(usuario.length==0 || nombre.length==0 || correo.length==0 || opinion.length==0){
+                
+                document.getElementById('obligatorio').innerHTML="<strong>Los campos con '*' son obligatorios</strong>";
+                TodoCorrecto=false;
+            }
+            else{
+                if (/^[A-Za-z\_\-\.\s\xF1\xD1]+$/.test(nombre)==false){
+                    document.getElementById('ErrorMsgNombre').innerHTML="<strong>*Ha introducido Numeros</strong>";
+                    TodoCorrecto=false;
+                }
+
+                if (isNaN(telefono)) {
+                    document.getElementById('ErrorMsgTelef').innerHTML="<strong>*Ha introducido Caraceteres</strong>";
+                    TodoCorrecto=false;
+                }
+
+                if(/\S+@\S+\.\S+/.test(correo)==false){
+                    document.getElementById('ErrorMsgCorreo').innerHTML="<strong>*No ha introducido correctamente el correo</strong>";
+                    TodoCorrecto=false;
+                }
+            }
+            
+           
+             
+                return TodoCorrecto;
+            
+        
+        }
+        
+        function comprueba_extension(formulario, archivo) {  //Explicacion de esta funcion
+            extensiones_permitidas = new Array(".gif", ".jpg", ".doc", ".pdf");
+            mierror = "";
+            if (!archivo) {
+//Si no tengo archivo
+                mierror = "No has seleccionado ningún archivo";
+            }
+            else{
+//recupero la extensión de este nombre de archivo
+                extension = (archivo.substring(archivo.lastIndexOf("."))).toLowerCase();
+//compruebo si la extensión está entre las permitidas
+                permitida = false;
+                for (var i = 0; i < extensiones_permitidas.length; i++) {
+                    if (extensiones_permitidas[i] == extension) {
+                        permitida = true;
+                        break;
+                    }
+                }
+            }
+        }
+        
+           
+        
+        //-----------------------------Actividad03--------------------------------------
+        
+        function formulario3(){
+            
+            var habilidatos=0;
+            var desabilitados=0;
+            
+            var checkboxes = document.getElementById('form3');
+            document.getElementById('demo').innerHTML="";
+            
+            for (var i=0; i<checkboxes.elements.length-1; i++){
+                
+                if(checkboxes.elements[i].checked==false){
+                    desabilitados++;
+                }
+                
+                if(checkboxes.elements[i].checked==true){
+                    habilidatos++;
+                }
+                
+            }
+            
+            if(desabilitados==checkboxes.elements.length-1){
+                
+                document.getElementById('demo').innerHTML="<strong>*Debes marcar una opcion</strong>";
+                return false;
+            }
+            
+            if(habilidatos>3){
+                checkboxes.style.color="red";
+                document.getElementById('demo').innerHTML="<strong>*Solo se pueden marcar hasta 3 Checkbox</strong>";
+                return false;
+            }
+        }
+    
+    </script>
+</head>
+<body>
+    <h2>Formulario 1</h2>
+    <form id="valid" name='Validacion' action='Repuesta.php' method="post">
+        Numero: <input id="num" type="text" name="num"> <label id="ErrorMsgNum"></label> <br>
+        Letras: <input id="let" type="text" name="let"> <label id="ErrorMsgLet"></label><br>
+        Letra y numeros: <input id="num_let" type="text" name="num_let"> <label id="ErrorMsgNum_Let"></label> <br>
+        <input type="button" value="Enviar" onClick=" if (validar()) { this.disabled=true; document.getElementById('valid').submit(); } else { this.disabled=false; }"><br>
+        <!--<input type="submit" value="Enviar"><br>-->
+        <label id="vacio"></label> 
+    </form>
+    
+    <br>
+    <br>
+    
+    <h2>Formulario 2</h2>
+    <form id="formuario2" name="form2" action="validador.php" method="post">
+        Usuario*: <input id="user" type="text" name="user" maxlength="20"><br><br>
+        Nombre y Apellidos*: <input id="nom" type="text" name="nom"><label id="ErrorMsgNombre"></label><br><br>
+        Direccion: <textarea id="Direc" name="direc" rows="5" cols="20" onkeypress="return LimiteTextarea(100)"></textarea><br><br>
+        Telefono: <input id="telef" type="text" name="telef" maxlength="9"><label id="ErrorMsgTelef"></label><br><br>
+        Correo electronico*: <input id="email" type="text" name="email"><label id="ErrorMsgCorreo"></label><br><br>
+        Sugerencias*: <input id="sug" type="text" name="sug" maxlength="500"><br><br>
+        Foto: <input type="file" name="archivo" onclick="comprueba_extension(this.form,this.form.archivo.value)"><br><br>
+        
+        <input type="button" value="Enviar" onClick="if(formulario2()) { this.disabled=true; document.getElementById('formulario2').Submit(); return true; } else { this.disabled=false;return false; }"><br>
+        <!--<input type="submit" value="Enviar"><br><br>-->
+        <label id="obligatorio"></label>  
+    </form>
+    
+    <br>
+    <br>
+    
+    <h2>Formulario 3</h2>
+    <form id="form3" name="form3" action="validador.php" method="post" onsubmit="return formulario3()">
+        Checkbox1: <input type="checkbox" id="myCheck1"><br>
+        Checkbox2: <input type="checkbox" id="myCheck2"><br>
+        Checkbox3: <input type="checkbox" id="myCheck3"><br>
+        Checkbox4: <input type="checkbox" id="myCheck4"><br>
+        Checkbox5: <input type="checkbox" id="myCheck5"><br>
+        Checkbox6: <input type="checkbox" id="myCheck6"><br>
+        Checkbox7: <input type="checkbox" id="myCheck7"><br>
+        Checkbox8: <input type="checkbox" id="myCheck8"><br>
+        <input type="submit" value="Comprobar"><br><br>
+        <label id="demo"></label>  
+    </form>
+</body>
+</html>

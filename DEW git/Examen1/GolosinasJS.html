@@ -1,0 +1,209 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Examen</title>
+     
+<style>
+
+#imagen1,#imagen2,#imagen3{
+ 
+    width: 5%;
+    height: 5%;
+    margin: 1%;
+    
+}
+
+</style>
+    
+<script>
+    
+    function productos(chuche,precio){
+
+                    this.chuche=chuche;
+                    this.precio=precio;
+                }
+    
+   
+    var suma=0;
+    
+    
+    
+    var Arraygolosinas = [golosinas1,golosinas2,golosinas3,golosinas4,golosinas5];
+    
+    productos.prototype.factura= function(){
+
+        suma += this.precio*cantidad;
+        
+        if (cantidad>0){
+        
+        return "Cantidad: " + cantidad + "<br> Producto: " + this.chuche + "<br> PrecioUnitario: " + this.precio+"€" + "<br>Precio Toltal :" + this.precio*cantidad +"€";  
+        }
+        else{
+            
+         return "No ha introducido una cantidad";   
+        }
+        
+    };
+    
+    
+    function golosinas1(){
+        
+        cantidad=prompt("Cuantas deceas?");
+        
+        if (cantidad<0 || isNaN(cantidad)){
+            
+            alert("No meta ni numeros negativos, ni caracteres");
+            
+        }
+        
+        else{
+        
+            var gominola1= new productos("caramelos",0.90);
+        
+            document.getElementById("golosina1").innerHTML=gominola1.factura();
+        }
+    }
+    
+    function golosinas2(){
+        
+        cantidad=prompt("Cuantas deceas?");
+        
+        if (cantidad<0 || isNaN(cantidad)){
+            
+            alert("No meta ni numeros negativos, ni caracteres");
+            
+        }
+        
+        else{
+        
+            var gominola2= new productos("lacasitos",0.20);
+
+            document.getElementById("golosina2").innerHTML=gominola2.factura();
+        }
+    }
+    
+    function golosinas3(){
+        
+        cantidad=prompt("Cuantas deceas?");
+        
+        if (cantidad<0 || isNaN(cantidad)){
+            
+            alert("No meta ni numeros negativos, ni caracteres");
+            
+        }
+        
+        else{
+        
+            var gominola3= new productos("regaliz",0.70);
+
+            document.getElementById("golosina3").innerHTML=gominola3.factura();
+        }
+    }
+    function golosinas4(){
+        
+        cantidad=prompt("Cuantas deceas?");
+        
+        if (cantidad<0 || isNaN(cantidad)){
+            
+            alert("No meta ni numeros negativos, ni caracteres");
+            
+        }
+        
+        else{
+        
+            var gominola4= new productos("nubes",0.50);
+
+            document.getElementById("golosina4").innerHTML=gominola4.factura();
+        }
+    }
+    function golosinas5(){
+        
+        cantidad=prompt("Cuantas deceas?");
+        
+        if (cantidad<0 || isNaN(cantidad)){
+            
+            alert("No meta ni numeros negativos, ni caracteres");
+            
+        }
+        
+        else{
+        
+            var gominola5= new productos("moras",0.10);
+
+            document.getElementById("golosina5").innerHTML=gominola5.factura();
+        }
+    }
+    
+    function total(){
+        
+        var igic1= (suma * 7)/100;
+        var igic2= suma + igic1;
+        
+        var descuento = prompt("Cuanto descuento '%' tiene su factura?");
+        
+        if (descuento<0 || isNaN(descuento)){
+         
+            alert("No introduzca valores negativos, ni caracteres");
+        }
+        
+        else if(descuento>0){
+        
+            var totaldescuento= (igic2*descuento)/100;
+            var tataldescuento2= igic2-totaldescuento;
+
+            alert("Factura:\nEl precio total es: " + suma + "\nEl precio con IGIC es: " + igic2 + "\nEl precioFinal con descuento del  "+descuento+"% es: " + tataldescuento2 );
+            
+            console.log("Tolta: " + tataldescuento2);
+        }
+        
+        else if(descuento==0){
+            
+            var totaldescuento= (igic2*descuento)/100;
+            var tataldescuento2= igic2-totaldescuento;
+
+            alert("Factura:\nEl precio total es: " + suma + "\nEl precio con IGIC es: " + igic2 + "\n No se ha aplicado descuento");
+            
+            console.log("Toltal: " + igic2);
+        }
+        
+    }
+    
+    function otrafactura(){
+     
+        var opcion= prompt("Desea crear otra factura?S/N");
+        
+        if (opcion=='S' || opcion=='s'){
+         
+            location.reload(true);
+            
+        }
+        else if (opcion=='N' || opcion=='n'){
+            
+            
+        }
+        
+        else{
+            
+            alert("No introdujo bien la opción");    
+        }
+        
+    }
+    
+    
+</script>
+    
+    
+</head>
+<body>
+    <img src="img/caramelos.jpg" id="imagen1" onclick="golosinas1()"> <p id="golosina1"></p> 
+    <img src="img/lacasitos.jpg" id="imagen2" onclick= "golosinas2()"><p id="golosina2"></p>
+    <img src="img/regaliz.jpg" id="imagen3" onclick= "golosinas3()"> <br><p id="golosina3"></p>
+    <img src="img/nubes.jpg" id="imagen1" onclick="golosinas4()"> <p id="golosina4"></p> 
+    <img src="img/moras.jpg" id="imagen2" onclick= "golosinas5()"><p id="golosina5"></p>
+    
+    <input type="button" value="total" onclick="total()">
+    <input type="button" value="NEW Factura" onclick="otrafactura()">
+    
+</body>
+</html>

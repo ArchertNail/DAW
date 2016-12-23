@@ -1,0 +1,32 @@
+<html>
+<head>
+
+<script>
+    
+    function showPic(Hlikn){
+        
+        var imagen=document.createElement('img');
+        imagen.src=Hlikn;
+        
+        if(document.getElementById('img').hasChildNodes()){
+            
+            document.getElementById('img').removeChild(document.getElementById('img').childNodes[0]);
+        }
+        
+        document.getElementById('img').appendChild(imagen);
+        
+    }
+    
+</script>
+    
+</head>
+ <body>
+     
+     <a href="http://definicionde.hugex.net/wp-content/uploads/2015/07/test-de-deporte.jpg" onclick="showPic(this.href); return false">Deportes</a>
+     <a href="http://www.bitfm.es/wp-content/uploads/2012/12/ciudad.jpg" onclick="showPic(this.href); return false">Ciudad</a>
+     <a href="http://www.hobbyconsolas.com/sites/default/files/users/no-watermark/hobby_consolas_1_0.jpg" onclick="showPic(this.href); return false">Hobbie</a>
+     <a href="http://st-listas.20minutos.es/images/2009-06/107921/1260707_640px.jpg?1254504333" onclick="showPic(this.href); return false">Personaje Historico Famoso</a> <br>
+     
+     <div id="img"></div>
+ </body>
+</html>

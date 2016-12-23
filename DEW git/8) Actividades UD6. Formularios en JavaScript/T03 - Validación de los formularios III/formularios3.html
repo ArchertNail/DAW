@@ -1,0 +1,151 @@
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    
+<style type="text/css">
+    html { height: 100% }
+    body { height: 100%; margin: 0; padding: 0 }
+    #mapa_div { height: 100% }
+</style>
+    
+    <script type="text/javascript" src="validate.min.js"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyA5tMq3xhOvlO99zmsIRkZLnUqoHGgHJUM&sensor=TRUE"></script>
+    
+    <script type="text/javascript">
+      function inicializar_mapa() {
+            if(document.getElementById("isla").value==1){
+                document.getElementById("mapa_div").innerHTML="<iframe src='https://www.google.com/maps/d/embed?mid=zi28uLjhwbCE.kff3-4gtsN3k' width='640' height='480'></iframe>";
+            }
+          else{
+             document.getElementById("mapa_div").innerHTML="<iframe src='https://www.google.com/maps/d/embed?mid=zi28uLjhwbCE.kBibHGXasvxo' width='640' height='480'></iframe>";
+          }
+      }
+    </script>
+</head>
+<body>    
+    
+    <form id="formu1" name="formulario">
+        <select id="isla" onchange="ElegirIsla()">
+            <option value="0">Seleccione una isla</option>
+            <option value="1">Tenerife</option>
+            <option value="2">La Palma</option>
+        </select>
+        <div id="modalidad"></div>
+        <div id="nivel"></div>
+        <div id="ciclo"></div>
+        
+        <div id="mapa_div"></div>
+    </form>
+    
+    <script>
+        
+        function ElegirIsla(){
+            if(document.getElementById("isla").value == '1'){
+                document.getElementById("nivel").innerHTML="";
+                document.getElementById("modalidad").innerHTML = 
+                    "<input type=checkbox id='chek1' name='check1' onclick='grados()'>Presencial<br><input type=checkbox id='chek2' name='check2' onclick='grados()'>SemiPresencial<br>";
+                document.getElementById("nivel").innerHTML = "";
+                document.getElementById("ciclo").innerHTML = "";
+                document.getElementById("mapa_div").innerHTML = "";
+            }
+            else if(document.getElementById("isla").value == '2'){
+                document.getElementById("modalidad").innerHTML = "<input type=checkbox id='chek1' name='a' onclick='grados()' checked disabled=true>Presencial<br>";
+                 document.getElementById("nivel").innerHTML = "<input type=checkbox id='medio' onclick='gradomedio()'><label>Grado Medio</label><br><input type=checkbox id='superior' onclick='gradosuperior()'><label>Grado Superior</label><br>";
+                document.getElementById("ciclo").innerHTML = "";
+                document.getElementById("mapa_div").innerHTML = "";
+                
+            }
+            else{
+                document.getElementById("modalidad").innerHTML = "";
+                document.getElementById("nivel").innerHTML = "";
+                document.getElementById("ciclo").innerHTML = "";
+                document.getElementById("mapa_div").innerHTML = "";
+            }
+        }
+        
+        function grados(){
+        
+            if(document.getElementById("chek1").checked  || document.getElementById('chek2').checked){
+                          
+                document.getElementById("nivel").innerHTML = "<input type=checkbox id='medio' onclick='gradomedio()'>Grado Medio<br><input type=checkbox id='superior' onclick='gradosuperior()'>Grado Superior<br>";
+                document.getElementById("ciclo").innerHTML="";                     
+            }
+            else{
+                
+                document.getElementById("nivel").innerHTML="";
+                document.getElementById("ciclo").innerHTML=""; 
+            }
+        }
+        
+        function gradomedio(){
+            if(document.getElementById("medio").checked && document.getElementById("isla").value=='1'){
+                       document.getElementById("ciclo").innerHTML = "<input type=checkbox id='SMRTenerife' onclick='inicializar_mapa()'>Sistemas Microinformáticos y Redes<br>";
+                document.getElementById("superior").checked=false;
+            }
+            else if(document.getElementById("medio").checked && document.getElementById("isla").value=='2'){
+                       document.getElementById("ciclo").innerHTML = "<input type=checkbox id='SMRPalma' onclick='inicializar_mapa()'>Sistemas Microinformáticos y Redes<br>";
+                document.getElementById("superior").checked=false;
+            }
+            else{
+                document.getElementById("ciclo").innerHTML="";
+            }
+        }
+        
+        function gradosuperior(){
+        
+            if(document.getElementById("isla").value == '2'){
+                    
+                if(document.getElementById("superior").checked){
+                    alert("No disponemos de este nivel");
+                    document.getElementById("superior").checked=false;
+                }
+                
+            }
+            else if(document.getElementById("superior").checked){
+                
+                document.getElementById("ciclo").innerHTML = "<input type=checkbox id='ASIR' onclick='inicializar_mapa()'>Administración de Sistemas Informáticos y Redes<br><input type=checkbox id='DEW' onclick='inicializar_mapa()'>Desarrollo de Aplicaciones Web<br><input type=checkbox id='DAM' onclick='inicializar_mapa()'>Desarrollo de Aplicaciones Multiplataforma<br>";
+                document.getElementById("medio").checked=false;
+                
+            }
+            else{
+                
+                document.getElementById("ciclo").innerHTML = ""; 
+            }
+                         
+        }
+        
+    </script>
+    
+    <script>
+        var validador = new FormValidator ('example_form', [{
+    nombre: 'req',
+    display: «necesaria»,
+    reglas: «necesaria»
+}, {
+    nombre: 'alfanumérica',
+    reglas: 'alpha_numeric'
+}, {
+    nombre: 'password',
+    reglas: «necesaria»
+}, {
+    nombre: 'password_confirm',
+    pantalla: 'confirmación de la contraseña',
+    reglas: 'requiere | partidos [contraseña]'
+}, {
+    nombre: 'email',
+    reglas: 'valid_email',
+    depende: function () {
+        volver Math.random ()> 0,5;
+    }
+}, {
+    nombre: 'minLength',
+    pantalla: 'longitud min',
+    reglas: 'min_length [8]'
+}], Función (errores, evento) {
+    si (errors.length> 0) {
+        // Muestra los errores
+    }
+});
+    </script>
+</body>
+</html>

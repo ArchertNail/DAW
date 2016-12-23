@@ -1,0 +1,71 @@
+<!doctype html>                              
+<html>
+<head>
+<meta charset="utf-8">
+<title>Script de Billetes </title>
+
+<style>
+    
+    .b5{
+           
+        float: left;
+    }
+    
+    .b20{
+        float: left;
+    }
+    
+    .b100{
+        float: left;
+           
+    }
+    
+    .b500{
+     
+        margin-left: 10%;
+    }
+</style>    
+    
+        
+<script>
+    var total=0;
+    
+    function VBilletes(billete){
+        
+        total=total+parseInt(billete.id);
+        document.getElementById('demo').innerHTML=total;
+    }
+    
+</script> 
+    
+</head>
+    
+<body>
+    <div class="BILLETES">
+        <div class="b5">
+            <img id="5" src="5Euros.jpg" width="220px" height="100px" onclick="VBilletes(this)">
+        </div>
+        <div class="b10">
+            <img id="10" src="10Euros.jpg" width="220px" height="100px" onclick="VBilletes(this)">
+        </div>
+        <div class="b20">
+            <img id="20" src="20Euros.jpg" width="220px" height="100px" onclick="VBilletes(this)">
+        </div>
+        <div class="b50">
+            <img id="50" src="50Euros.jpg" width="220px" height="100px" onclick="VBilletes(this)">
+        </div>
+        <div class="b100">
+            <img id="100" src="100Euros.jpg" width="220px" height="100px" onclick="VBilletes(this)">
+        </div>
+        <div class="b200">
+            <img id="200" src="200Euros.jpg" width="220px" height="100px" onclick="VBilletes(this)">
+        </div>
+        <div class="b500">
+            <img id="500" src="500Euros.jpg" width="220px" height="100px" onclick="VBilletes(this)">
+        </div>    
+    </div>
+    
+    <p id="demo">0</p>
+</body>
+    
+</html>

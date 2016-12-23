@@ -1,0 +1,92 @@
+<html>
+    <head>
+        <script>
+            var contador=0;
+             var cont=0;
+            function lista(){
+                
+                var dato=document.getElementById('text').value;
+                if(dato==""){
+                    
+                    alert("has dejado el campo vacio");
+                }
+                else{
+                    
+                    var TODO= document.createElement("tr");
+                    var TODO2= document.createElement("td");
+                    TODO2.textContent=dato;                
+                    TODO.appendChild(TODO2);
+                    
+                    var TODO3= document.createElement("td");
+                    TODO3.innerHTML="<input type='checkbox' name=checkbox id="+contador+">";
+                    TODO.appendChild(TODO3);
+                    
+                    document.getElementById('lista').appendChild(TODO);
+
+                    contador++;
+                }
+            }
+            
+            function Borrar(){
+                var bool=false;
+                var checkboxes = document.getElementById("form1").checkbox;
+                var tabla = document.getElementById("lista");
+                
+                for (var i=checkboxes.length-1; i >= 0; i--) {
+                    
+                    if (checkboxes[i].checked) {
+                        tabla.deleteRow(i+1);
+                        bool=true;
+                    }
+                }
+                
+                if(bool==false){
+                    
+                    alert("No ha seleccionado ningun valor");   
+                }
+            }
+            
+            function CheckAll() {
+                
+                var checkboxes = document.getElementById("form1").checkbox;
+                
+                for(var i=0; i<checkboxes.length;i++){
+                    document.getElementById(i).checked = true;
+                }
+                
+            }
+            
+            function UnCheck() {
+                var checkboxes = document.getElementById("form1").checkbox;
+                
+                for(var i=0; i<checkboxes.length;i++){
+                    document.getElementById(i).checked = false;
+                }
+            }
+        </script>
+    </head>
+    
+    <body>
+        
+        <form id="form1" method="post" action="">
+            <center>
+
+            <h1>Lista TO-DO</h1>
+
+            <table id='lista' border='1'>
+                <tr>
+                <td><strong>DATO</strong></td><td><strong>BORRAR</strong></td>
+                </tr>    
+
+            </table><br>
+
+
+            <input type='text' id='text'>
+            <input type="button" value="Anadir" onclick="lista()"><br><br>
+            <input type="button" value="Borrar" onclick="Borrar()">
+            <input type="button" value="Selec ALL" onclick="CheckAll()">
+            <input type="button" value="Des ALL" onclick="UnCheck()">
+            </center>
+        </form>
+    </body>
+</html>

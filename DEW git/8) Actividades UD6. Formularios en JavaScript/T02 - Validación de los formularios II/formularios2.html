@@ -1,0 +1,179 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        #formu{
+            text-align: center;
+            background-color: aqua;
+            font-weight: bold;
+        }
+        
+        .ErrorMsg{
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <form id="formu" name="formu" action="Registrado.html">
+        NIF <input type="text" id="nif" value="Introduzca su DNI" onclick="if(this.value=='Introduzca su DNI') this.value=''" onblur="if(this.value=='') this.value='Introduzca su DNI'"><label class='ErrorMsg' id="ErrorMsgNIF"></label><br>
+        Fecha de nacimiento<input type="text" id="fecha" value="Introduzca una Fecha" onclick="if(this.value=='Introduzca una Fecha') this.value=''" onblur="if(this.value=='') this.value='Introduzca una Fecha'"><label class='ErrorMsg' id="ErrorMsgFecha"></label><br>
+        clave de acceso<input type="password" id="pass" readonly="readonly"><a href="#" onclick="document.getElementById('pass').value=''">Limpiar clave</a><label class='ErrorMsg' id="ErrorMsgPass"></label><br><br>
+        <div id="numeros"></div>
+        <br>
+        Tipo de solicitante:<br> 
+            <input type="radio" name="solicitante" id="profesor" onclick="Combo(this.id)">Profesor
+            <label id="ComboProf"></label><label class='ErrorMsg' id="ErrorMsgComboProf"></label><br>
+            <input type="radio" name="solicitante" id="estudiante" onclick="Combo(this.id)">Estudiante<br>
+            <label id="ComboEstu"></label><label id="Curso"></label><br>
+        Género: <br> 
+            <input type="radio" name="genero" id="masculino" onclick="sexo(this.id)">Masculino<br>
+            <img id="ImgMasc" src=""><br>
+            <input type="radio" name="genero" id="femenino" onclick="sexo(this.id)">Femenino<br><br>
+            <img id="ImgFem" src=""><br>
+        <input type="button" value="Enviar" onClick=" if (validar()) { this.disabled=true; document.getElementById('formu').submit(); } else { this.disabled=false; }">
+        <input type="button" value="Reiniciar formulario" onclick="Reset()" id="reiniciar">       
+    </form>
+    <p class='ErrorMsg' id="obligatorio"></p>
+    
+    <script>
+        function validar(){
+            var TodoCorrecto=true;
+            
+            var Nif=document.getElementById("nif").value;
+            var Fecha=document.getElementById("fecha").value;
+            var Clave=document.getElementById("pass").value;
+            var Solicitante1=document.getElementById("profesor");
+            var Solicitante2=document.getElementById("estudiante");
+            var Genero1=document.getElementById("masculino");
+            var Genero2=document.getElementById("femenino");
+            
+            document.getElementById("obligatorio").innerHTML="";
+            document.getElementById("ErrorMsgNIF").innerHTML="";
+            document.getElementById("ErrorMsgFecha").innerHTML="";
+            document.getElementById("ErrorMsgPass").innerHTML="";
+            document.getElementById("ErrorMsgComboProf").innerHTML="";
+            
+            
+            if(Nif.length==0 || Fecha.length==0 || Clave.length==0 || Solicitante1.checked==false && Solicitante2.checked==false || Genero1.checked==false && Genero2.checked==false){
+                
+                document.getElementById('obligatorio').innerHTML="<strong>*Todos Los campos han de estar rellenos</strong>";
+                TodoCorrecto=false;
+            }
+            else{
+                if(!(/(^([0-9]{7,8}[a-z,A-Z])|^)$/.test(Nif))){
+                    document.getElementById("ErrorMsgNIF").innerHTML=" *No se ha introducido correctamente";
+                    TodoCorrecto=false;
+                }
+                if(!(/^\d{2}\/\d{2}\/\d{4}$/.test(Fecha))){
+                    document.getElementById("fecha").value='';  
+                    document.getElementById("ErrorMsgFecha").innerHTML=" *No se ha introducido correctamente";
+                    TodoCorrecto=false;
+                }
+                if(document.getElementById('ProfSoli').value=="0"){
+                    document.getElementById("ErrorMsgComboProf").innerHTML="*No has Elegido Departamento";
+                    TodoCorrecto=false;
+                }
+            }
+            
+            return TodoCorrecto;
+        }
+        
+        function IntroPass(num){
+            
+            var contrasenia=document.getElementById("pass").value;
+            if(contrasenia.length<5){
+                document.getElementById("pass").value+=num; //porque con variable no furula??
+            }
+        }
+        
+        function Combo(solicitante){
+            if(solicitante=="profesor"){
+                document.getElementById("ComboEstu").innerHTML="";
+                document.getElementById("Curso").innerHTML="";
+                document.getElementById("ComboProf").innerHTML="<select id='ProfSoli'><option value=0>Elige un departamento</option><option value=1>Departamento1</option><option value=2>Departamento2</option><option value=3>Departamento3</option></select>";
+            }
+            if(solicitante=="estudiante"){
+                document.getElementById("ComboProf").innerHTML="";
+                document.getElementById("ComboEstu").innerHTML="<strong>Facultad: </strong><select id='facultad' onchange='ElegirCurso()'><option value=0>Elige una Facultad</option><option value=1>Facultad 1</option><option value=2>Facultad 2</option></select><br>";
+                
+            }
+        }
+        
+        function ElegirCurso(){
+            var NumFacultad=document.getElementById("facultad").value;
+            if(NumFacultad==1 || NumFacultad==2){
+                document.getElementById("Curso").innerHTML="<strong>Curso: </strong> <input id='NumCurso' type='text' maxLength='1' onkeypress=' return CondicionesCurso(event)'>";
+            }
+            else{
+                document.getElementById("Curso").innerHTML="";
+            }
+        }
+        
+        function CondicionesCurso(e){
+            
+            if(e.keyCode == 49 || e.keyCode == 50 || e.keyCode == 51){
+                return true;
+            }
+            else{
+                
+                return false;
+            }
+        }
+        
+        function sexo(genero){
+            
+            if(genero=="masculino"){
+                document.getElementById("ImgFem").src="";
+                document.getElementById("ImgMasc").src="Masculino.png";
+            }
+            else{
+                document.getElementById("ImgMasc").src="";
+                document.getElementById("ImgFem").src="Femenino.png";
+            }
+        }
+        
+        function aleatorio(){
+        
+            var numaleatorio = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1];
+            var numoriginal = [0,1,2,3,4,5,6,7,8,9];
+
+            for(i = 0; i<numaleatorio.length; i++){
+                var pos = Math.floor((Math.random() * numoriginal.length));
+                var x = numoriginal[pos];
+
+                document.getElementById("numeros").innerHTML += "<input type=button value="+x+" id="+x+" onclick=contratecleada("+x+")>";
+                numaleatorio[i] = x;
+                numoriginal.splice(pos,1);
+
+            }
+        }
+        aleatorio();
+        function contratecleada(a){
+        
+            if(document.getElementById("pass").value.length < 5){
+                document.getElementById("pass").value += a;
+            }
+        }
+        
+        function Reset(){
+            document.getElementById("nif").value="Introduzca su DNI";
+            document.getElementById("fecha").value="Introduzca una Fecha";
+            document.getElementById("pass").value="";
+            document.getElementById("obligatorio").innerHTML="";
+            document.getElementById("ComboProf").innerHTML="";
+            document.getElementById("ComboEstu").innerHTML="";
+            document.getElementById("Curso").innerHTML="";
+            document.getElementById("ImgFem").src="";
+            document.getElementById("ImgMasc").src="";
+            document.getElementById("profesor").checked=false;
+            document.getElementById("estudiante").checked=false;
+            document.getElementById("masculino").checked=false;
+            document.getElementById("femenino").checked=false;
+            document.getElementById("numeros").innerHTML="";
+            aleatorio();
+        }
+        
+    </script>
+</body>
+</html>

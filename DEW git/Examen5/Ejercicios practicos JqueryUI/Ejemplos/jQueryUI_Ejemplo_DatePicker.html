@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Probando el DatePicker de jQueryUI</title>
+	<link type="text/css" href="jquery-ui-1.11.4.custom/jquery-ui.css" rel="Stylesheet" id="linkestilo" />
+    <script src="jquery-ui-1.11.4.custom/external/jquery/jquery.js"></script>
+    <script src="jquery-ui-1.11.4.custom/jquery-ui.js"></script>   	
+
+    <script>
+    /* Inicialización en español para la extensión 'UI date picker' para jQuery. */
+    /* Traducido por Vester (xvester [en] gmail [punto] com). */
+    jQuery(function($){
+       $.datepicker.regional['es'] = {
+          closeText: 'Cerrar',
+          prevText: '<Ant',
+          nextText: 'Sig>',
+          currentText: 'Hoy',
+          monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+          monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+          dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+          dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+          dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+          weekHeader: 'Sm',
+          dateFormat: 'dd/mm/yy',
+          firstDay: 1,
+          isRTL: false,
+          showMonthAfterYear: false,
+          yearSuffix: ''};
+       $.datepicker.setDefaults($.datepicker.regional['es']);
+    });
+        
+    $(document).ready(function(){
+       $("#campofecha").datepicker({
+          firstDay: 1,
+          showOn: 'both',
+          buttonImage: 'calendar.png',
+          buttonImageOnly: true,
+          changeYear: true,
+          numberOfMonths: 2,
+          onSelect: function(textoFecha, objDatepicker){
+             $("#mensaje").html("<p>Has seleccionado: " + textoFecha + "</p>");
+          }
+       });
+
+    $(function () {
+        $("#off").click(function () {
+        $("#campofecha").datepicker().hide();
+        });
+    });
+    $(function () {
+        $("#on").click(function () {
+            $("#campofecha").datepicker().show();
+        });
+    });
+	$("#campofecha").datepicker("option", "showButtonPanel", true)
+	$("#campofecha").datepicker("option", "showWeek", true)
+
+    $(function () {
+        $("#from").datepicker({
+        onClose: function (selectedDate) {
+            $("#to").datepicker("option", "minDate", selectedDate);
+        }
+        });
+        $("#to").datepicker({
+        onClose: function (selectedDate) {
+            $("#from").datepicker("option", "maxDate", selectedDate);
+        }
+        });
+    });  
+        
+    })
+    </script>
+</head>
+<body>
+
+<form>
+   Fecha: <input type="text" name="fecha" id="campofecha">
+</form>
+
+<div id="mensaje"></div>
+
+
+<a href="#" id="cambiames">Mostrar formulario para cambiar mes</a>
+
+<hr />
+<input type="button" id="off" value="hide" />
+<input type="button" id="on" value="show" />
+<p>
+Desde:
+<input type="text" id="from" name="from" />
+Hasta:
+<input type="text" id="to" name="to" />
+<script>
+$(document).ready(function(){
+   $("#cambiames").click(function(){
+      $("#campofecha").datepicker( "option", "changeMonth", true );
+   });
+  
+});
+    
+</script>
+
+</body>
+</html>

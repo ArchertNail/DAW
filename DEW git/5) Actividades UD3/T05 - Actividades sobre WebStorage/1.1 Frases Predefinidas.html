@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>LocalStorage</title>
+    
+    
+<script>
+
+    function texto() {
+        
+    //tres formas de declarar una LocalStorage
+        
+        localStorage.sustantivo=document.getElementById('noun').value;
+        localStorage["adjetivos"]=document.getElementById('adjective').value;
+        localStorage.setItem("nombre",document.getElementById('name').value);
+    
+    //LLamamos el localStorage de tres maneras distintas metiendo su valor dentro de una variable:
+      
+        var LocalSustantivo=localStorage.sustantivo;
+        var LocalAdjetivo=localStorage["adjetivos"];
+        var LocalNombre=localStorage.getItem("nombre");
+        
+        alert(LocalNombre + " es " + LocalAdjetivo + " y se ha casado con un " + LocalSustantivo);
+    }
+    
+    function cadena(){
+        
+        localStorage.sustantivo=document.getElementById('noun').value;
+        localStorage.adjetivos=document.getElementById('adjective').value;
+        localStorage.nombre=document.getElementById('noun').value;
+    }
+    
+    function actualizar(){
+     
+        document.getElementById('noun').value=localStorage.sustantivo;
+        document.getElementById('adjective').value=localStorage.adjetivos;
+        document.getElementById('name').value=localStorage.nombre;
+        
+    }
+</script>    
+    
+</head>
+     
+<body onload="actualizar()">
+ 
+    <h1>Mad Libs</h1>
+ 
+     <ul>
+        <li>Noun: <input id="noun" type="text" onkeyup="cadena()" >
+        </li><li>Adjective: <input id="adjective" type="text" onkeyup="cadena()">
+        </li><li>Someone's Name: <input id="name" type="text" onkeyup="cadena()">
+        </li>
+    </ul>
+     
+    <input type="button" onclick="texto()" value="Enviar">
+    
+    <p id="demo"></p>
+
+</body>
+
+</html>

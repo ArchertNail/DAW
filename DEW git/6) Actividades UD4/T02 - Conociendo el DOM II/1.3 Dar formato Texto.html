@@ -1,0 +1,44 @@
+<html>
+<head>
+
+<style>
+</style>
+
+<script>
+
+function fuente(fuente){
+    
+    document.getElementById("myTextarea").style.fontFamily=fuente;
+}
+    
+ </script>
+    
+</head>
+ <body>
+     
+     <textarea id="myTextarea">
+         
+         PETER
+     
+     </textarea>
+     <br>
+     Font:
+     
+     <input type="radio" name='fuente' value="Serif" onclick='fuente(this.value)'>Serif
+     <input type="radio" name='fuente' value="Fantasy" onclick='fuente(this.value)'>Fantasy
+     <input type="radio" name='fuente' value="Arial" onclick='fuente(this.value)'>Arial<br>
+     Style:
+     <input type="checkbox" value="bold" id='bold' onclick="if(this.checked==true){
+                                                                document.getElementById('myTextarea').style.fontWeight=this.value;
+                                                            }
+                                                            else{
+                                                                document.getElementById('myTextarea').style.fontWeight='normal';
+                                                            }">Bold
+     <input type="checkbox" value="Italic" id='italic' onclick="if(this.checked==true){
+                                                                document.getElementById('myTextarea').style.fontStyle=this.value;
+                                                            }
+                                                            else{
+                                                                document.getElementById('myTextarea').style.fontStyle='normal';
+                                                            }">Italic
+ </body>
+</html>

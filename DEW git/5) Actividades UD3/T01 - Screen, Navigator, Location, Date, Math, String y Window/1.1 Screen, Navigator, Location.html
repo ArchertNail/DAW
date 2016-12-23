@@ -1,0 +1,70 @@
+<!doctype html>                              
+<html>
+<head>
+<meta charset="utf-8">
+<title>Screen, Navigator,Location </title>
+
+<style>
+
+.cuerpo{
+    
+ margin-left: 40px;
+    
+}
+
+</style>
+    
+<script type="text/javascript">
+    
+    
+    //Crear:
+
+    //1)Una página de aviso que indique al cargarse (mediante un alert) la resolución de pantalla. (screen.width y screen.height)
+    function Apartado01(){
+     
+        alert(screen.width + "x" +screen.height);
+    }
+    
+    //2)Una página en la que escriban todas las propiedades del navegador (objeto navigator y sus propiedades).
+    
+    function Apartado02(){
+        
+        document.getElementById("demo").innerHTML=("<strong>appCodeName:</strong> " + navigator.appCodeName + "<br> <strong>appName:</strong> " + navigator.appName + "<br> <strong>appVersion:</strong> " + navigator.appVersion + "<br> <strong>Language:</strong> " + navigator.language + "<br> <strong>Plataform:</strong> " + navigator.platform + "<br><strong>OnLine:</strong> " + navigator.onLine + "<br><strong>Product: </strong>" + navigator.product + "<br><strong>userAgent: </strong>" + navigator.userAgent );
+
+    }
+    //3)Crear una web que muestre en la Web el nombre y la descripción de los plugins instalados. Además crea una función que indique el        protocolo, el puerto y la URL completa. Añade a la Web un enlace que recargue la Web.
+    
+    function Apartado03(){
+        
+        var plugins = navigator.plugins;
+        document.write("<h2>Plugins: </h2>");
+        for (var i=0; i<plugins.length;i++){
+         
+            document.write("<strong>Nombre: </strong>" + navigator.plugins[i].name + "<br>");
+            document.write("<strong>Descripcion: </strong>" + navigator.plugins[i].description + "<br><br>");
+            
+        }
+        
+        document.write("<h2>Protocolo, Puerto y URL: </h2>");
+        
+        document.write("<strong>Protocolo: </strong>" + location.protocol + "<br> <strong>Puerto: </strong>" + location.port + "<br><strong>URL: </strong>" + window.location + "<br><br>");
+        document.write("<a href='1.1%20Screen,%20Navigator,%20Location.html'> Actualizar</a>");
+    
+    }
+    
+    
+</script> 
+    
+</head>
+    
+<body>
+    
+    <input type="button" value="Apartado1" onclick="Apartado01()"> <br>
+    <input type="button" value="Apartado2" onclick="Apartado02()"> <br>
+    <input type="button" value="Apartado3" onclick="Apartado03()">
+    
+
+    <p id="demo"></p>
+</body>
+    
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Problema</title>
+    
+    <style>
+    table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+}
+th {
+    text-align: left;
+}
+    
+    </style>
+  <!--<script src="funciones.js"></script>-->
+    <link href="estilos.css" rel="StyleSheet" type="text/css">
+  <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+   <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+   <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" media="screen" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    
+    <script>
+        
+        $(document).ready(function(){
+            function DatosIniciales(){
+              $.ajax({
+                url:'pagina1.php', 
+                type:'post',     
+                dataType:'json',
+                }).done(function(respuesta){
+                  var titul=["id","Nombre","Edad","Genero","Email","Localidad","Telefono"];
+                  $("#tabla").html("");
+                  var Titulos=$("<tr>");
+                  
+                  for(var i=0; i<7; i++){
+                      var titulo=$("<th>");
+                      titulo.html(titul[i]);
+                      Titulos.append(titulo);
+                  }
+                  $("#tabla").append(Titulos);
+                  
+                  
+                  for(var i=0; i<respuesta.length; i++){
+                      var conjunto=$("<tr>");
+                      conjunto.attr("id","datos");
+                      for(var j=0; j<7; j++){
+                          var columna= $("<td>");
+                          columna.html(respuesta[i][j]);
+                          conjunto.append(columna);
+                      }
+                      $("#tabla").append(conjunto);
+                  }    
+                })  
+            }
+            
+            setInterval(DatosIniciales,3000)
+            
+            $("#boton1").click(function(){
+                var nombre=$("#Nombre").val();
+                var Edad=$("#Edad").val();
+                var Genero=$("#Genero").val();
+                var Email=$("#Email").val();
+                var Localidad=$("#Localidad").val();
+                var Telefono=$("#Telefono").val();
+                
+                var obj=[];
+                obj[0]={
+                    nombre:nombre,
+                    edad:Edad,
+                    genero: Genero,
+                    email:Email,
+                    localidad:Localidad,
+                    telefono:Telefono
+                };
+                
+                var param=JSON.stringify(obj);
+                $.post("pagina2.php",{param});
+            });
+            
+            
+        })
+    </script>
+</head>
+<body>
+  <H1>EXAMEN</H1>
+    Nombre: <input id="Nombre" type="text"><br>
+    Edad:<input id="Edad" type="text"><br>
+    Genero(M o H): <select id="Genero"><option>M</option><option>H</option></select><br>
+    Email: <input id="Email" type="text"><br>
+    Localidad: <input id="Localidad" type="text"><br>
+    Telefono: <input id="Telefono" type="text"><br>
+    <input id="boton1" type="button" value="Insertar"><br>
+    
+    <table id="tabla">
+
+        
+    </table>
+    
+    
+</body>
+</html>
+

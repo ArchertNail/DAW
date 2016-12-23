@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>LocalStorage</title>
+
+    
+<script>
+
+    function Local() {
+        
+        var letra1=document.getElementById('L1').value;
+        var letra2=document.getElementById('L2').value;
+        var letra3=document.getElementById('L3').value;
+        var letra4=document.getElementById('L4').value;
+        var letra5=document.getElementById('L5').value;
+        
+        var cadena=letra1+letra2+letra3+letra4+letra5;
+        cadena=cadena.toLowerCase();
+        
+        if (cadena=="peter"){
+            
+            if (localStorage.contador==undefined){
+                
+                localStorage.contador=1;
+                document.getElementById('contador').innerHTML="Intentos: " +localStorage.contador;
+            }
+            else{
+                localStorage.contador++;
+                document.getElementById('contador').innerHTML="Intentos: " +localStorage.contador;
+            }
+            
+            if(localStorage.historialCorrecto==undefined){
+                
+                localStorage.historialCorrecto=" ";
+                localStorage.historialCorrecto=localStorage.historialCorrecto+"-"+cadena+"<br>";
+                document.getElementById('demo').innerHTML="CORRECTO!!";
+                document.getElementById('historialCorrecta').innerHTML="Historial Correctas: <br>" + localStorage.historialCorrecto;
+            }
+            else{
+                localStorage.historialCorrecto=localStorage.historialCorrecto+"-"+cadena+"<br>";
+                document.getElementById('demo').innerHTML="CORRECTO!!";
+                document.getElementById('historialCorrecta').innerHTML="Historial Correctas: <br>" + localStorage.historialCorrecto;
+            }
+            if (localStorage.historialError==undefined){
+                
+                localStorage.historialError=" ";
+                document.getElementById('demo').innerHTML="CORRECTO!!";
+                document.getElementById('historialError').innerHTML="Historial Errores: <br>" + localStorage.historialError;
+            }
+            else{
+                
+                document.getElementById('demo').innerHTML="CORRECTO!!";
+                document.getElementById('historialError').innerHTML="Historial Errores: <br>" + localStorage.historialError;
+            }
+            
+        }
+            
+            
+        else{
+            
+            if (localStorage.contador==undefined){
+                
+                localStorage.contador=1;
+                document.getElementById('contador').innerHTML="Intentos: " +localStorage.contador;
+            }
+            else{
+                localStorage.contador++;
+                document.getElementById('contador').innerHTML="Intentos: " +localStorage.contador;
+            }
+            
+            if(localStorage.historialCorrecto==undefined){
+             
+                localStorage.historialCorrecto=" ";
+                document.getElementById('demo').innerHTML="CORRECTO!!";
+                document.getElementById('historialCorrecta').innerHTML="Historial Correctas: <br>" + localStorage.historialCorrecto;
+            }
+            else{
+                document.getElementById('demo').innerHTML="CORRECTO!!";
+                document.getElementById('historialCorrecta').innerHTML="Historial Correctas: <br>" + localStorage.historialCorrecto;
+            }
+            
+            if (localStorage.historialError==undefined){
+                
+                localStorage.historialError=" ";
+                document.getElementById('demo').innerHTML="HAS FALLADO";
+                document.getElementById('historialError').innerHTML="Historial Errores: <br>" + localStorage.historialError;
+            }
+            else{
+                localStorage.historialError=localStorage.historialError+"-"+cadena+"<br>";    
+                document.getElementById('demo').innerHTML="HAS FALLADO";
+                document.getElementById('historialError').innerHTML="Historial Errores: <br>" + localStorage.historialError;
+            }
+        }
+    }
+    
+    function Borrar(){
+     
+        localStorage.removeItem("historialError");
+        localStorage.removeItem("contador");
+        localStorage.removeItem("historialCorrecto");
+        localStorage.historialError="";
+        localStorage.historialCorrecto="";
+        localStorage.contador="0";
+        document.getElementById('historialError').innerHTML="Historial Errores: <br>" + localStorage.historial;
+        document.getElementById('historialCorrecta').innerHTML="Historial Correcta: <br>" + localStorage.historialCorrecto;
+        document.getElementById('contador').innerHTML="Intentos: " + localStorage.contador;
+    }
+    
+</script>    
+    
+</head>
+     
+<body>
+    <center>
+        <h1>Pregunta:</h1>
+        <p>¿Cual es el verdadero nombre de Spiderman?</p>
+        <input maxlength='1' type="text" id="L1" value="P" size="1" readonly>
+        <input maxlength='1' type="text" id="L2" value="*" size="1" onclick='this.value=""'>
+        <input maxlength='1' type="text" id="L3" value="T" size="1" readonly>
+        <input maxlength='1' type="text" id="L4" value="*" size="1" onclick='this.value=""'>
+        <input maxlength='1' type="text" id="L5" value="*" size="1" onclick='this.value=""'><br><br>
+        <input type="button" onclick="Local()" value="Comprobar">
+        <input type="button" onclick="Borrar()" value="Borrar Historial"><br>
+        <p id="contador"></p>
+        <p id="demo"></p>
+        <div id="historialError"></div>
+        <div id="historialCorrecta"></div>
+    </center>
+</body>
+
+</html>

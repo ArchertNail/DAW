@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8" />
+  <title></title>
+ </head>
+ <body>
+ 
+ <h1>Frases locas</h1>
+ 
+ <ul>
+  <li>Nombre de una persona: <input type="text" id="noun">
+  <li>Adjetivo: <input type="text" id="adjective">
+  <li>Escribe un objeto <input type="text" id="name">
+ </ul>
+ 
+ <button id="lib-button" onclick="makeMadLib()">Probemos!</button>
+  
+ <div id="story"></div>
+
+     <script>
+        function makeMadLib(){
+             var nombre=document.getElementById('noun').value;
+             var adjetivo=document.getElementById('adjective').value;
+             var objeto=document.getElementById('name').value;
+
+             var cadena=nombre+" es "+adjetivo+" y tiene "+objeto;
+
+             document.getElementById('story').innerHTML=cadena;
+        }
+     </script>
+ </body>
+</html>

@@ -1,0 +1,138 @@
+
+<html lang="es-Es">
+<head>
+	<meta charset="utf-8" />
+	<title>Laberinto!</title>
+	<link href="laberinto.css" type="text/css" rel="stylesheet" />
+	<!--<script src="laberinto.js" type="text/javascript"></script>-->
+</head>
+
+<body>
+	<h1>Laberinto para el cursor del ratón!</h1>
+	<h2 id="status">Haz click sobre la "S" para empezar.</h2>
+	
+	<div id="laberinto">
+		<div id="inicio">S</div>
+		<div class="bloque" id="bloque1"></div>
+		<div class="bloque"></div>
+		<div class="bloque"></div>
+		<div class="bloque"></div>
+		<div class="bloque"></div>
+		<div class="bloque"></div>
+		<div class="bloque"></div>
+		<div class="bloque"></div>
+		<div id="fin">E</div>
+	</div>
+	
+	<p>
+		El objetivo del juego es pasar el cursor del ratón desde la S hasta la E. Debes evitar tocar los muros:
+	</p>
+	
+	<div class="bloque ejemplo"></div>
+	
+	<p>
+		Buena suerte!
+	</p>
+    
+    <script>
+        var trampas=false;
+        var juego=false;
+        var ganar=false;
+        var Trampa2=false;
+       
+        function fallo(){
+                    
+                    if (juego==false){
+                            
+                        if(ganar==false && Trampa2==false){
+                            
+                            for(var i=1; i<9;i++){
+                                var bloque_Fondo=document.getElementById('laberinto').children[i];
+                                bloque_Fondo.style.background="yellow";     
+                            }
+
+                            document.getElementById('status').innerHTML=" ¡¡¡¡Has Fallado!!!!";
+                            trampas=true;
+                            juego=true;
+                            Trampa2=true;
+                        }
+                    }
+                }
+       
+        function SuperTrampa(){
+                    
+                    if(Trampa2==false){
+                        
+                        document.getElementById('status').innerHTML="NO HAGAS TRAMAS, VUELVE A EMPEZAR!!";
+                        Trampa2=true;
+                    }
+                    
+                }
+       
+       
+       function ganastes(){
+                    if(trampas==true || Trampa2==true){
+
+                        document.getElementById('status').innerHTML="Presione la 'S' para Volver a Empezar";
+                    }
+                    else{
+
+                        document.getElementById('status').innerHTML=" ¡¡¡¡GANASTES!!!!";
+                        ganar=true;
+                        Trampa2=true;
+                    }
+                }
+        
+        
+       
+       var Start=document.getElementById('inicio');
+        
+        Start.addEventListener("click",ComienzaJuego);
+        
+        function ComienzaJuego(){
+            
+            var jugar=prompt("¿Quieres empezar a jugar?s/n");
+            
+            if(jugar=='n' || jugar=='N'){
+                
+                alert("Intentelo más tarde");   
+            }
+            else{
+                trampas=false;
+                juego=false;
+                ganar=false;
+                Trampa2=false;
+                
+                
+                document.getElementById('status').innerHTML="COMIENZA EL JUEGO";
+                for(var i=1; i<9;i++){
+                    var bloque_Fondo=document.getElementById('laberinto').children[i];
+                    bloque_Fondo.style.background="#A0522D";     
+                }
+                
+                for(var i=1; i<9;i++){
+                      
+                   var bloque=document.getElementById('laberinto').children[i];
+                   bloque.addEventListener("mouseover",fallo);   
+                }
+                
+                
+                
+                var Fin=document.getElementById('fin');
+                Fin.addEventListener("mouseover",ganastes);
+                
+                
+                
+                
+                document.getElementById('laberinto').addEventListener('mouseleave',SuperTrampa);
+                
+                
+            }
+        }
+        
+        
+       
+    
+    </script>
+</body>
+</html>

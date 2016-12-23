@@ -1,0 +1,273 @@
+/*Zero browser defaults*/
+body * {margin:0; padding:0; border:none;text-indent:0;text-decoration: none;outline:none;}
+
+
+/* ------------------------
+	Basic style 
+ ------------------------ */
+body			{font-family:helvetica, arial, sans-serif; margin:0; padding:0;}
+h1, h2, h3, h4, p, ul, ol {font-weight:normal;margin-bottom:15px; font-size:15px; line-height:21px; }
+a 				{color:rgb(200,15,15); /*red*/}
+#arch div		{clear:both;}
+#nav            {list-style:none;}
+.current a      {color:black;}
+p				{margin-bottom:10px;}
+blockquote  	{font-size:15px; line-height:21px;}
+h3				{padding:5px; background-color:#fff; clear:both; width:540px;}
+
+
+
+
+/* ------------------------
+	Body
+------------------------ */
+
+body {
+	background: #fff url(images/hofmann-bg.png) no-repeat fixed center -750px;
+	}
+
+/* ------------------------
+	Wrap (contains #main and #side)
+------------------------ */
+
+div#wrap { /*total interior width will be 900px*/
+	width: 900px; 
+	margin:20px auto;
+	}
+
+/* ------------------------
+	Main  
+------------------------ */
+
+	
+div#main { /*total width will be 600px*/
+	float:left; 
+	margin-top:50px;
+	width:600px;
+	}
+
+
+
+
+	
+/* ------------------------
+	Navigation
+ ------------------------ */
+
+
+#nav {
+	list-style:none;
+	margin-bottom:50px;
+	}
+
+
+/* +++++++++++++++++++++++++++++++++++
+Make the nav links more button-like:
+1. Float them left
+2. Add a lot of horizontal padding and 
+   a little vertical padding
+3. Add right margins (only) to separate them from each other
+4. Make the whole link clickable
+5. Alter the border-radius numbers to 
+   so that the ends of the butotns are
+   perfect half-circles.
+   */
+#nav li a {
+	color:white;
+	background-color:rgba(0,0,0,.5);
+	-webkit-border-radius: 0px; /* Round the corners */
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+	/* Transition properties. The syntax is  
+	   transition: properties-to-animate timing easing  */
+	-webkit-transition: all .5s ease;
+	-moz-transition: all .5s ease;
+	-o-transition: all .5s ease;
+	transition: all .5 ease;	
+	}
+
+
+/* +++++++++++++++++++++++++++++++++++
+   On hover, make the nav buttons solid red.
+   Look above for the syntax */
+	
+
+/* ------------------------
+	Side
+ ------------------------ */
+
+/* +++++++++++++++++++++++++++++++++++
+   This div has multiple background images. Notice how they are
+   separated by commas, with the last one ending with a semicolon. 
+   Write a rule the three missing bg images: corner-bottom-left.png, 
+   corner-top-right.png, and corner-top-left.png. Then position them 
+   in their corresponding corners.
+   */
+#side { /* total width will be 300px */
+	float:right; 
+	padding:30px;
+    margin-top:50px;
+    width:240px;
+	background-color:rgba(0,0,0,.8);
+	background-repeat: no-repeat;
+	background-image: 
+			     url(images/corner-bottom-right.png), 
+				 url(images/ah.png);
+	background-position: 
+				right bottom,
+				0 0;
+	}
+
+
+#side h4 {color:white;}
+
+#side p {
+	color:white;
+	font-size:12px;
+	line-height:16px;
+	}
+
+
+
+/* +++++++++++++++++++++++++++++++++++
+ Float the image inside the #side div to the *right* and add 
+   some space between it and the surrounding text. 
+   */
+
+
+/* +++++++++++++++++++++++++++++++++++
+ Write a rule for links inside the #side div:
+1. make them white to make them look like regular text
+2. set all transitions to take .3 seconds and to use easing */
+
+
+/* +++++++++++++++++++++++++++++++++++
+ Write a rule that reveals the links 
+   by applying a background color *only when* the user 
+   hovers over the #side div. Use a red for the background color -- 
+   either #f00 or rgb(255,0,0)*/
+
+
+
+/* +++++++++++++++++++++++++++++++++++
+ Now write a rule for hovering over 
+   the actual links in #side: have their bg 
+   color change from red to blue (#00b4ff). */
+
+
+
+
+/* ------------------------
+	Gallery
+ ------------------------ */
+
+
+ul.gallery {
+	list-style:none; /* Remove bullets */
+	margin-bottom:20px;
+	clear:both;
+	}
+
+/* Float the list items > links  > images into rows */
+ul.gallery li  {
+	width:100px;
+	height:150px;
+	float:left;
+	margin:0 50px 50px 0;
+	font-weight:bold;
+	font-size:12px;
+	}
+
+
+ul.gallery li a img {
+	display:block;
+	}
+
+/* Add drop shadows to the thumbs. The syntax is 
+   box-shadow: offset-x offset-y blur-amount shadow-color */
+ul.gallery img {
+/*	shadows*/
+	-moz-box-shadow: 0 0 20px #000;
+	-webkit-box-shadow: 0 0 20px #000;
+	box-shadow: 0 0 20px #000;
+/* +++++++++++++++++++++++++++++++++++
+ Using the syntax we used for the nav buttons, 
+ set all transitions to occur over .3 seconds, 
+ and use easing */ 
+}
+
+
+/* +++++++++++++++++++++++++++++++++++
+ Write a rule for hovering over images in the gallery.
+   First, have them move down a little. Second, using the 
+   drop shadow syntax above have their shadow color change to blue  */
+
+/* +++++++++++++++++++++++++++++++++++
+ Write a special selector for the last image, whose list item 
+   has an id of "favorite": On hover, prevent its image from
+   being pushed down and instead scale it to 120% using the syntax below */
+
+
+
+
+
+
+
+
+/* ------------------------
+	Essay
+ ------------------------ */
+
+/* +++++++++++++++++++++++++++++++++++
+   The div below uses CSS3 columns. Choose a column count
+   (greater than 1), a column gap, anda  column border that 
+   look good. Then add transition settings that set all properties
+   to animate over 1 second, with easing */
+
+#essay {
+	width:800px;
+	background:rgba(0,0,0,0);
+	color:white;
+	float:left;
+	padding:100px 50px;
+	-moz-column-count: 1;
+	-webkit-column-count: 1;
+	-moz-column-gap: 0;
+	-webkit-column-gap: 0; 
+	-moz-column-rule: 0px solid white;
+	-webkit-column-rule: 0px solid white;
+	}
+
+
+/* +++++++++++++++++++++++++++++++++++
+   Write a rule that changes the background to an 80% black
+   when hovering over the #essay div. The background declaration 
+   above gives you a hint for the syntax */
+
+	
+/* +++++++++++++++++++++++++++++++++++
+   Choose a rotation for the h3 ('Thoughts on the poster') 
+   that looks good */	
+#essay h3 {
+	clear:both;
+	color:rgb(225,25,25);
+	-webkit-transform: rotate(0deg);
+	-moz-transform: rotate(00deg);
+	transform: rotate(0deg);
+	margin:-50px  0 0 -50px ;
+	background-color:transparent;
+	font-size:100px;
+	line-height:90px;
+	font-weight:bold;
+	z-index:-1;
+	position:relative;
+	}
+
+#essay h4 {
+	margin:-120px 0 120px 0;
+	padding:5px;
+	color:#000;
+	background-color:white;
+	}
+
+

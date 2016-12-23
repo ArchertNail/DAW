@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>Cookie Example</title>
+<script language="javascript">
+function setCookie(nombre,value,dias) {
+var expdate = new Date();
+expdate.setTime(expdate.getTime() + dias*24*60*60*1000);
+document.cookie = nombre+"="+encodeURIComponent (value)+"; expires=" + expdate.toUTCString();
+}
+function getCookie(nombre) {
+var index = document.cookie.indexOf(nombre+"=");
+if (index == -1)
+return null;
+index = document.cookie.indexOf("=", index) + 1;
+var endstr = document.cookie.indexOf(";", index);
+if (endstr == -1)
+endstr = document.cookie.length;
+return decodeURIComponent(document.cookie.substring(index, endstr));
+}
+</script>
+</head>
+    
+    
+<body id="fondo">
+    <script language="javascript">
+        
+        var ColorPagina= getCookie("color");
+        
+        if (ColorPagina == null){
+            
+            ColorPagina = prompt("Introduce tu color favorito (ingles)");
+            
+            setCookie("color",ColorPagina,30);
+            
+            document.getElementById('fondo').style.backgroundColor=ColorPagina;
+        }
+        else{
+            
+            document.getElementById('fondo').style.backgroundColor=ColorPagina;
+        }
+    function Borrar(){
+        document.cookie = "color=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    }
+        
+    </script>
+    <input type="button" value="Borrar Cookie" onclick="Borrar()">
+</body>
+<html>

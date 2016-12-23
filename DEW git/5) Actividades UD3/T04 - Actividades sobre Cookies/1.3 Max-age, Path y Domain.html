@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>Cookie Example</title>
+<script language="javascript">
+    
+    function setCookie(nombre,value,minutos) {
+        
+        document.cookie = nombre+"="+encodeURIComponent (value)+"; Max-age=" + minutos*60  + ";domain=;path=/DEW/";  //usamos Max-age en vez del expire para definir el tiempo de vida de la cookie --- El domain establece donde actuaran las cookies y path expesifican en que lugar no podran usarse en ningun otro sitio que no sea los archivos de la carperta DEW
+    }
+    
+function getCookie(nombre) {
+var index = document.cookie.indexOf(nombre+"=");
+if (index == -1)
+return null;
+index = document.cookie.indexOf("=", index) + 1;
+var endstr = document.cookie.indexOf(";", index);
+if (endstr == -1)
+endstr = document.cookie.length;
+return decodeURIComponent(document.cookie.substring(index, endstr));
+}
+</script>
+</head>
+    
+    
+<body id="fondo">
+    <script language="javascript">
+
+        var MaxAge= getCookie("maxage"); // cookie para probar la variable Max-Age 
+        
+        if (MaxAge == null){
+            
+            MaxAge = prompt("Como te llamas?");
+            
+            setCookie("maxage",MaxAge,1);
+        }
+        else{
+            
+            alert(MaxAge);
+        }
+        
+        function Borrar(){
+           // document.cookie = "maxage=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+            setCookie('maxage',MaxAge,-1000);
+        }
+        
+    </script>
+    <input type="button" value="Borrar Cookie" onclick="Borrar()">
+</body>
+<html>

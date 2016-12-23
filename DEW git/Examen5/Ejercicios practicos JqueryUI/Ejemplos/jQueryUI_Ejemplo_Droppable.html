@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Probando el comportamiento droppable de jQueryUI</title>
+	<link type="text/css" href="jquery-ui-1.11.4.custom/jquery-ui.css" rel="Stylesheet" id="linkestilo" />
+	<style type="text/css">
+	body{
+		font-family: sans-serif;
+	}
+	#micapa{
+		width: 160px;
+		padding: 7px;
+		font-size: 10px;
+		font-weight: bold;
+		text-align: center;
+	}
+	.clasesuelta{
+		width: 160px;
+		padding: 7px;
+		font-size: 10px;
+		font-weight: bold;
+		text-align: center;
+        background-color: orange;
+	}        
+    .ui-draggable {background: red}
+    .ui-draggable-dragging { background: blue}       
+	</style>
+    <script src="jquery-ui-1.11.4.custom/external/jquery/jquery.js"></script>
+    <script src="jquery-ui-1.11.4.custom/jquery-ui.js"></script>   	
+
+</head>
+<body>
+    <div id="micapa" class="ui-corner-all ui-state-highlight tarea">Prueba a arrastrar la capa</div>
+    <div id="capasoltar" style="height:100px" class="ui-corner-all ui-state-highlight">Suelta aquí</div>
+    
+	<script type="text/javascript">
+		$(document).ready(function(){
+            $("#micapa").draggable({
+                 cursor: 'move',	  //cambiamos la punta de flecha del ratón por una cruz
+                 containment: 'document' //limitamos el arrastre dentro del padre. Puede ser: document, window o coordenadas [x1,y1,x2,y2]               
+            });
+
+            $("#capasoltar").droppable({
+               accept: ".tarea",
+               tolerance: "fit"
+            });  
+            
+            $("#capasoltar").droppable({
+               drop: function( evento, ui ) {    //mismos parámetros que en el plugin draggable
+                  $(this).html("Droppable!!!");
+		          ui.draggable.css("background-color","yellow");	
+               }
+            });  
+  
+            $("#capasoltar").droppable({
+               out: function( evento, ui ) {
+                  $(this).html("Saliendo...");
+               }
+            });     
+            
+            //$("#capasoltar").droppable("disable");
+            //Al iniciar el arrastre sobre un elemento que pueda soltarse en el elemento "#soltable", se aplique la clase "clasesuelta"
+            $("#capasoltar").droppable("option", "activeClass", "clasesuelta"); //2º=opción a modificar y 3er=valor con el que se modifica
+           // $("#capasoltar").droppable("option", "activeClass"); //Saber qué clase se definió como "activeClass"
+		})
+     
+	</script>    
+</body>
+</html>

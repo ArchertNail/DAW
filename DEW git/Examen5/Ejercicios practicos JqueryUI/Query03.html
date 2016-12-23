@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>jQuery UI Resizable functionality</title>
+        <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        <link href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" media="screen" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+            <!-- CSS -->
+        <style>
+            #demo{
+                border: 1px solid black;
+                width: 130px;
+                height: 90px;
+                text-align: center;
+                margin-top: 50px;
+                float: left;
+            }
+            #Caja1{
+                border: 1px solid black;
+                width: 330px;
+                height: 190px;
+                text-align: center;
+                margin-left: 400px;
+                
+            }
+            
+            #feedback { font-size: 1.4em; }
+            #Lista .ui-selecting { background: #FECA40; }
+            #Lista .ui-selected { background: #F39814 !important; color: white; }
+            #Lista { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+            #Lista li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; }
+            
+        </style>
+      <!-- Javascript -->
+        <script>
+            
+            $(document).ready(function(){
+                
+                $("#demo").draggable({
+                    cursor: 'move',	  
+                    revert:true
+                });
+                
+                $("#Caja1").droppable({
+                    drop: function( evento, ui ) {
+                        $("#POS").html("Dentro");
+                        ui.helper.draggable({revert:false});
+                        ui.helper.draggable("disable");
+                        $("#Caja2").dialog({
+                          modal: true,
+                          buttons: {
+                              "Resizable": function() {
+                                  $(this).dialog( "close" );
+                                  $("#Actividad01").css("display","none");
+                                  var DivResizable = $("<input type='text' id='TextResizable'>");
+                                  $("#Actividad02").append(DivResizable);
+                                  $("#TextResizable").resizable();
+                                },
+                              
+                              "Selectable": function(){
+                                  $(this).dialog( "close" );
+                                  $("#Actividad01").css("display","none");
+                                  var ListaUl=$("<ul id='Lista'>");
+                                  for(var i=0; i<5; i++){
+                                      var Listali=$("<li id='Color'>");
+                                      //Listali.css("width","150px");
+                                      //Listali.css("height","25px");
+                                      Listali.css("backgroundColor","blue");
+                                      Listali.css("border","1px solid black");
+                                      //Listali.css("text-align","center");
+                                      //Listali.css("margin","3px");   
+                                      Listali.text("Color"+(i+1));
+                                      ListaUl.append(Listali);
+                                  }
+                                  $("#Actividad03").append(ListaUl);
+                                  $("#Lista").selectable();
+                              },
+                              "Sortable": function(){
+                                  $(this).dialog( "close" );
+                                  $("#Actividad01").css("display","none");
+                                  for(var i=0; i<5; i++){
+                                      var Listali=$("<li id='Color'>");
+                                      Listali.css("width","150px");
+                                      Listali.css("height","25px");
+                                      Listali.css("backgroundColor","silver");
+                                      Listali.css("border","1px solid black");
+                                      Listali.css("text-align","center");
+                                      Listali.css("margin","3px");   
+                                      Listali.text("Color"+(i+1));
+                                      $("#Actividad04").append(Listali);
+                                  }
+                                  $("#Actividad04").sortable();
+                                  $("#Actividad04").disableSelection();
+                              },
+                              "Calendario": function(){
+                                  $(this).dialog( "close" );
+                                  $("#Actividad01").css("display","none");
+                                  var Calendario=$("<input type='text' id='Calendar'>");
+                                  var BtnCalendario=$("<input type='button' value='Ver Fecha' id='BotonCalen'>");
+                                  $("#Actividad05").append(Calendario);
+                                  $("#Actividad05").append(BtnCalendario);
+                                  $("#Calendar").datepicker();
+                                  $("#BotonCalen").click(function(){
+                                      alert($("#Calendar").val());
+                                  })
+                              },
+                              "Acordeon": function(){
+                                  $(this).dialog( "close" );
+                                  $("#Actividad01").css("display","none");
+                                  for(var i=0; i<5; i++){
+                                      /*var Listali=$("<li id='Color'>");
+                                      Listali.css("width","150px");
+                                      Listali.css("height","25px");
+                                      Listali.css("backgroundColor","silver");
+                                      Listali.css("border","1px solid black");
+                                      Listali.css("text-align","center");
+                                      Listali.css("margin","3px");   
+                                      Listali.text("Color"+(i+1));
+                                    
+                                      var parrafo=$("<p>");
+                                      parrafo.text("Parrafo: " + i);
+                                      
+                                      Listali.append(parrafo);
+                                      $("#Actividad06").append(Listali);*/
+                                      var titulo = $("<h3>");
+                                      titulo.text("Titulo"+(i+1));
+                                      var parrafo=$("<p>");
+                                      parrafo.text("Este es el parrafo del Acordeon " + (i+1));
+                                      var DivParrafo=$("<div>");
+                                      DivParrafo.append(parrafo);
+                                      
+                                      $("#Actividad06").append(titulo);
+                                      $("#Actividad06").append(DivParrafo);
+                                  }
+                                  $("#Actividad06").accordion();
+                                  
+                              }
+                              
+                              
+                            }
+                        })
+                    }
+                })
+            });
+            
+        </script>
+        
+    </head>
+    <body>
+        <div id='Actividad01'>
+            <div id="demo">
+                SOY DRAGGABLE <br>
+                <label id="POS" style="color:red">Fuera</label>
+            </div>
+            <div id="Caja1">
+                SOY DROPPABLE
+            </div>
+        </div>
+        <div id='Actividad02'>
+            <div id="Caja2">
+            </div>
+        </div>
+        <div id="Actividad03">
+        </div>
+        <div id='Actividad04'>
+        </div>
+        <div id="Actividad05">
+        </div>
+        <div id="Actividad06">
+        </div>
+    </body>
+</html>

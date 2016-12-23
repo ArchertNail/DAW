@@ -1,0 +1,124 @@
+<!doctype html>                              
+<html>
+<head>
+<meta charset="utf-8">
+<title>DOM II </title>
+
+    <style>
+    
+    #fondo{
+    
+        background-repeat:no-repeat;
+        background-size:cover;
+    }
+    
+    </style>
+
+<script type="text/javascript">
+    
+// 1. Escribir un script que cada 15 segundos escriba en la web tu nombre con un color diferente (se deben definir 5 colores diferent es distintos al color de fondo blanco).
+    
+    
+    
+    
+    function Apartado01(){
+        
+        var contador = 0;
+        var nombre = "peter";
+        var colores = ["red","blue","yellow","green","orange"];
+        
+        var tiempo1 = setInterval(Apartado01_2,3000);
+        
+        function Apartado01_2(){
+        
+            document.getElementById("demo").style.color=colores[contador%colores.length];  //El %contador.lenght hace un array Ciclico
+
+            document.getElementById("demo").innerHTML="<h2>" +nombre + "</h2>";
+
+            contador++;
+        }
+    }
+    
+    function Apartado02(){
+        
+        alert("La pagina se destruira en 5sec");
+        var tiempo2=setTimeout(Apartado02_2,5000);
+        
+        function Apartado02_2(){
+            
+            var ventana = window.open("", "MsgWindow", "width=200, height=250");
+            ventana.document.write("Yo broma, destrucción en 10sec");
+            var tiempo3=setTimeout(Apartado02_3,5000);
+            
+            function Apartado02_3(){
+                 
+                var ventana2=ventana.window.open("", "MsgWindow2", "width=200, height=250");
+                ventana2.document.write("<h1> BOOOM </h1>");
+                window.close();                  
+            }
+        }
+    }
+    
+    
+    function Apartado03(){
+     
+        document.write("<h1>La pagina se redirigira a google en 10 segundos </h1>");
+        var tiempo = setTimeout(Apartado03_2,2000);
+        
+        function Apartado03_2(){
+                
+            var google =window.open("https://www.google.es/?gws_rd=ssl");
+        }
+        
+    }
+       
+    function Apartado04(){
+        
+        var tiempo1=setInterval(Apartado04_2,1000);
+     
+        function Apartado04_2(){
+         
+            var hora = new Date();
+            
+            var HoraActual = hora.toLocaleTimeString();
+            document.getElementById("demo").innerHTML="<strong>"+ HoraActual+"</strong>";
+            
+            if (HoraActual>"05:00:00" && HoraActual<"12:00:00"){
+                
+                document.getElementById("hora").innerHTML="<strong>Buenos dias</strong>";
+                document.getElementById("fondo").style.backgroundImage="url('amanecer.jpg')";
+                
+            }
+            
+            else if(HoraActual>"12:00:00" && HoraActual<"18:00:00"){
+             
+                document.getElementById("hora").innerHTML="<strong>Mediodia</strong>";
+                document.getElementById("fondo").style.backgroundImage="url('tarde.jpg')";
+                
+            }
+            else if(HoraActual<"18:00:00" && HoraActual<"22:00:00"){
+             
+                document.getElementById("hora").innerHTML="<strong>Hora de Cenar</strong>";
+                document.getElementById("fondo").style.backgroundImage="url('noche.jpg')";
+                
+            }
+        }
+    }
+            
+</script> 
+    
+</head>
+    
+<body id='fondo'>
+    
+    <input type="button" value="Apartado1" onclick="Apartado01()"> <br>
+    <input type="button" value="Apartado2" onclick="Apartado02()"> <br>
+    <input type="button" value="Apartado3" onclick="Apartado03()"> <br>
+    <input type="button" value="Apartado4" onclick="Apartado04()">
+    
+
+    <p id="demo"></p>
+    <p id="hora"></p>
+</body>
+    
+</html>

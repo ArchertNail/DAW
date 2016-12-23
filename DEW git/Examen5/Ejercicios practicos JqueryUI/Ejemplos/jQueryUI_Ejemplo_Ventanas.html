@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Probando las ventanas modales de jQueryUI</title>
+    <meta charset="UTF-8">    
+	<link type="text/css" href="jquery-ui-1.11.4.custom/jquery-ui.css" rel="Stylesheet" id="linkestilo" />
+    <script src="jquery-ui-1.11.4.custom/external/jquery/jquery.js"></script>
+    <script src="jquery-ui-1.11.4.custom/jquery-ui.js"></script>   	
+
+    <script>
+    $(document).ready(function(){
+    // Primer ejemplo        
+        $("#dialogo").dialog();        
+
+    // Segundo ejemplo
+        var caja2 = $('<div title="Segunda caja"><p>Segunda caja de diálogo.</p><p>En este caso, se crear el div y, sin mostrarlo en la página, lo creo en una caja de diálogo.</p></div>');
+        function mostrarVentana2(){
+           $("#dos").click(function(){
+               caja2.dialog()
+           }).hover(function(){
+               $("body").css('cursor','pointer');
+            },function(){
+               $("body").css("cursor", "auto");
+           });
+        }
+        mostrarVentana2();
+    
+    // Tercer ejemplo
+        var caja3 = $('<div title="Tercera caja"><p>Tercera caja de diálogo (Modal).</p><p>En este caso, se crear el div y, sin mostrarlo en la página, lo creo en una caja de diálogo.</p><p>Además la ventana es modal.</p></div>');        
+        $("#tres").click(function(){
+            caja3.dialog({
+                  modal: true, // Es ventana modal
+                  title: "Ventana modal", // Título de la ventana
+                  width: 550, // Ancho de la ventana
+                  minWidth: 400, // Ancho mínimo permitido
+                  maxWidth: 650, // Ancho máximo permitido
+                  show: "Fold",  // La ventana no se muestra de golpe sino con efecto
+                  hide: "Scale",  // La ventana no se oculta de golpe sino con efecto
+                  buttons: {     // Botones
+                    "Quiero abrir la segunda ventana": function() {
+                      caja2.dialog();    
+                      $( this ).dialog( "close" );
+                    },
+                    Cancel: function() {
+                      $( this ).dialog( "close" );
+                    }
+                  }                
+               });    
+       }).hover(function(){
+           $("body").css('cursor','pointer');
+        },function(){
+           $("body").css("cursor", "auto");
+       });
+    })        
+    </script>
+</head>
+<body>
+   <h1>Caja de diálogo 1</h1>
+    <p>Cuando se terminen de cargar los scripts, aparecerá una caja de diálogo...</p>
+    <div id="dialogo" title="Primera caja" style="display: none;">
+       <p>Esta caja de diálogo, se puede redimensiona y arrastrar a otra posición. Para cerrarla se debe hacer click sobre el icono X.</p>
+    </div>
+   <h1 id="dos">Caja de diálogo 2 (crear la ventana directamente con jQuery cuando se pulsa sobre el texto y cambiar el puntero del ratón)</h1>
+   <h1 id="tres">Caja de diálogo 3 (modal, cambio de puntero del ratón) con jQuery </h1>
+</body>
+</html>

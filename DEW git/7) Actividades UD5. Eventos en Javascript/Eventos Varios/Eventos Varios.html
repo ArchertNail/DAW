@@ -1,0 +1,93 @@
+<!DOCTYPE html>                              
+<html>
+<head>
+<meta charset="utf-8">
+<title>Primer Script </title>
+<style>
+   html,body{
+       width: 100%;
+       height: 100%;
+       padding: 0;
+       margin: 0;
+   }
+    
+    #flecha{
+     
+        width: 30px;
+        height: 30px;
+        
+    }
+    #moneda{
+        width: 50px;   
+        height: 50px;
+    }
+    
+    #principito{
+        
+        width: 150px;
+        height: 220px;
+    }
+    
+    #cuadrado{
+        
+        width: 20px;
+        height: 20px;
+        border: 5px solid black;
+    }
+    
+</style>
+    
+<script type="text/javascript" src="Eventos.js">
+        
+</script> 
+
+    
+</head>
+
+    
+    
+<body>
+    <div style="width: 100%;height:100%"  onclick="pagina(event)">
+        <center>
+        <div id="menu">
+            <img src="guest.PNG" onclick="menu(this)" onmouseover="this.src='guest_m.PNG';" onmouseout="this.src='guest.PNG'" >
+            <img src="home.png" onmouseover="this.src='home_m.png';" onmouseout="this.src='home.png'">
+            <img src="links.PNG" onmouseover="this.src='links_m.PNG';" onmouseout="this.src='links.PNG'">
+            <img src="sendemail.png" onmouseover="this.src='sendemail_m.png';" onmouseout="this.src='sendemail.png'"><br><br>
+        </div>
+        
+            <input id='texto' type="text" onkeydown="document.getElementById('flecha').src='flecha_azul.jpg'" onkeyup="document.getElementById('flecha').src='flecha_roja.jpg'" >
+            <img id="flecha">
+        
+        <h1>Cara o cruz</h1>
+        <div>
+            <img id='moneda' src="cara.png" alt="euro" /> <br />
+            <button id="lanzar" onclick="LanzarMoneda()">Lanzar moneda</button>
+        </div>
+        <p>
+            Total Caras: <span id="num_caras">0</span><br />
+            Total Cruces: <span id="num_cruz">0</span>
+        </p>
+        
+        <img id='principito' src="ElPrincipito.jpg" alt="principito" onmouseover="ElPrincipito()" onmouseout="document.getElementById('hechos').innerHTML=''"/> <br />
+        <span id="hechos"></span>
+        <br>
+
+        <h1>Jardin de flores</h1>
+        <div>
+            filas: <input type="text" id ="rows" />
+            columnas: <input type="text" id ="columns" /> <br />
+            <button onclick="crecer();">Jardín de flores</button>
+        </div><br>
+        
+        <div id="jardin">
+
+        </div>
+        <br>
+        
+        <div id="cuadrado" onclick="AumCuadrado(this)"></div>
+        </center>
+    </div>
+</body>
+    
+</html>

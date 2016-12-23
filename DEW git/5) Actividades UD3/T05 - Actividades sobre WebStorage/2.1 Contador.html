@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>LocalStorage</title>
+    
+    
+<script>
+
+    function MeGusta() {
+        
+        str_count = localStorage.getItem("count");
+        if (str_count == null || str_count == "null"){
+            count = 0;
+        } 
+        else{
+            count = parseInt(str_count);
+        }
+
+        count+=5;
+        
+        document.getElementById('demo').innerHTML="Contador = " + count;      
+        localStorage.setItem("count", count);
+    }
+    
+    function Borrar(){
+        
+        localStorage.removeItem("count");
+    }
+    
+</script>    
+    
+</head>
+     
+<body>
+ 
+    <h1>Contador:</h1>
+ 
+    <input type="button" onclick="MeGusta()" value="Likes">
+    <input type="button" onclick="Borrar()" value="Borrar Likes">
+    <p id="demo"></p>
+
+</body>
+
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>LETRAS</title>
+<style>
+    #contenedor{
+        width: 100%;
+        height: 600px;
+    }
+</style>
+    
+<link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        <link href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" media="screen" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    
+<script>
+
+    
+$(document).ready(function() {       
+    
+function PosicionInicial(){ 
+    $.ajax({
+        url:'pagina1.php', //pagina que te vas a conectar
+        type:'post',       //Como vas a enviar los datos
+        dataType:'json',   //Como te llegan los datos, (los desencripta) 
+    }).done(function(resp){
+        for(var i=0; i<resp.length; i++){
+            var contenedor=$("<div>");
+            contenedor.html(resp[i][0]);
+            contenedor.attr("id", resp[i][3]);
+            contenedor.css("position","absolute");
+            contenedor.css("left",resp[i][1]+"px");
+            contenedor.css("top",resp[i][2]+"px");
+            $("#demo").append(contenedor);
+            MoverLetra();
+        
+        }
+    });
+}
+    
+    PosicionInicial();
+    
+   function MoverLetra(){
+       $("#demo div").draggable({
+        stop: function(){
+            var valor = $(this);
+            var IdLetra=valor.attr("id");
+            var PosX=valor.css("left").slice(0,-2);
+            var PosY=valor.css("top").slice(0,-2);
+            var obj=[];
+                obj[0]={
+                    x:PosX,
+                    y:PosY,
+                    codigo: IdLetra
+                };
+                
+            EnviarDatos(obj);   
+            }
+        });
+    } 
+    
+    
+    function EnviarDatos(DatoLetra){
+        var cadena=JSON.stringify(DatoLetra); //estoy pasandolo a lenguaje JSON
+        //$.post("pagina2.php",{cadena});
+        
+            $.ajax({
+                data:{cadena},
+                url:'pagina2.php',
+                type:'post',
+                dataType:'json'});
+        }
+    
+    
+    function pintar(){
+        
+        $.ajax({
+                url:'pagina1.php',
+                type:'post',
+                dataType:'json',
+        }).done(function(respuesta2){
+                for(var i=0; i<respuesta2.length;i++){
+                    var IDLETRA=$("#demo div").eq(i).attr("Id");
+                    var XLETRA =$("#demo div").eq(i).css("left").slice(0,-2);
+                    var YLETRA =$("#demo div").eq(i).css("top").slice(0,-2);
+                    
+                    for(var j=0; j<respuesta2.length;j++){                     
+                        if(IDLETRA==respuesta2[j].codigo){
+                            if((YLETRA!=respuesta2[j].y) || (XLETRA!=respuesta2[j].x)){
+                                $("#"+IDLETRA).animate({top:respuesta2[j].y,left:respuesta2[j].x},1500)
+                            }
+                        }
+                    }
+                }   
+            });
+        
+    }
+    
+    setInterval(pintar,3000);
+}); 
+</script>
+</head>
+<body>
+<div id="contenedor"> <!--porque he de crear una capa?-->
+    <div id="demo">
+        
+    </div>
+</div>
+<div id="resultados">
+        
+    </div>
+
+</body>
+</html>

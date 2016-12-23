@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Probando las notificaciones con Toastr</title>
+    <meta charset="UTF-8">    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" media="screen" rel="stylesheet" type="text/css" />
+    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script type="text/javascript">
+        toastr.options.closeButton = true;
+        toastr.options.positionClass = "toast-bottom-right";
+        function notification( type, message ) {
+            if( type == 'success' ) {
+                toastr.success(message,'<i>Éxito</i>');
+            } else if( type == 'error' ) {
+                toastr.error(message,'Error');
+            } else if( type == 'warning' ) {
+                toastr.warning(message,'Peligro');
+            } else {
+                toastr.info(message,'Información');
+            }	
+        }
+</script>
+    
+</head>
+<body>
+	<div align="center">
+		<h1>Notificaciones usando Toastr</h1>
+		<br/>
+		<a href="#" onclick="notification('success', 'Esto es una notifiación de <strong>éxito</strong>.');">Éxito</a>
+		<br/>
+		<a href="#" onclick="notification('error', 'Esto es una notifiación de <strong>error</strong>.');">Error</a>
+		<br/>
+		<a href="#" onclick="notification('warning', 'Esto es una notifiación de <strong>peligro</strong>.');">Peligro</a>
+		<br/>
+		<a href="#" onclick="notification('info', 'Esto es una notifiación de <strong>info</strong>.');">Info</a><br/>
+		<br/>
+		<a href="#" onclick="javascript:toastr.clear()">Eliminar todas las notificaciones</a>
+	</div>
+</body>
+</html>

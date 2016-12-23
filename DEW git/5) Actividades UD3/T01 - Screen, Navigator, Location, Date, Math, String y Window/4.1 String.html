@@ -1,0 +1,67 @@
+<!doctype html>                              
+<html>
+<head>
+<meta charset="utf-8">
+<title>String </title>  
+  
+<script type="text/javascript">
+    
+
+    
+    function Apartado01(){
+     
+        var cadena=prompt("Introduce una cadena");
+        var caden2="";
+        for (var i=cadena.length-1;i>=0;i--){ 
+         
+            caden2+=cadena[i];
+        }
+        
+        alert(caden2);
+    }
+    
+    function Apartado02(cadena){
+    
+        
+        var cadena2 = cadena.split(' ');
+        var cadena3="";
+        
+        for (var i=cadena2.length-1;i>=0;i--){ 
+         
+            cadena3+=cadena2[i]+" ";
+        }
+        
+        alert(cadena3);
+    }
+    
+    function Apartado03(){
+    
+        var cadena1=prompt("Introduce una cadena").toLowerCase();
+        
+        if (isNaN(cadena1)){
+            
+            var cadena2=cadena1.charAt(0).toUpperCase() + cadena1.slice(1); //El metodo Slice imprime la cadena desde la posicion que deseamos.
+            alert(cadena2);
+        }
+        else{
+            
+            alert("No introduzca numeros");
+        }
+        
+    }
+    
+    
+</script> 
+    
+</head>
+    
+<body>
+    
+    <input type="button" value="Apartado01" onclick="Apartado01()"> <br>
+    <input type="button" value="Apartado02" onclick="Apartado02('El baifo canario tiene su propio mecanismo')"> <br>
+    <input type="button" value="Apartado03" onclick="Apartado03()"> <br>
+    
+    <p id="demo"></p>
+</body>
+    
+</html>

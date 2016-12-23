@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>jQuery UI Resizable functionality</title>
+        <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        <link href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" media="screen" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+            <!-- CSS -->
+        <style>
+            #Contenedor{
+                border: 1px solid black;
+                width: 40%;
+                height: 170px;
+                
+            }
+            .BOX{
+                text-align: center;
+                margin: 2px;
+                border: 2px solid black;
+                width: 80px;
+                height: 20px;
+                background-color: red;
+            }
+            #Dato{
+                border: 1px solid black;
+                width: 40%;
+                height: 30px;
+                text-align: center;
+                background-color: yellow;  
+            }
+            
+            
+        </style>
+      <!-- Javascript -->
+        <script>
+            
+            $(document).ready(function(){
+                
+                $(".BOX").draggable({
+                    cursor: 'move',	  
+                    containment: $("#Contenedor"),
+                    revert:true,
+                    start: function(){
+                        $("#Dato").html("ON");
+                    }
+                });
+                $("#Contenedor").droppable({
+                    drop: function(){
+                        $("#Dato").html("OFF");
+                    }
+                });
+
+    
+            })
+            
+        </script>
+        
+    </head>
+    <body>
+        <div id="Contenedor">
+            <div class="BOX">BOX</div>
+        </div>
+        <div id="Dato"> OFF </div>
+    </body>
+</html>

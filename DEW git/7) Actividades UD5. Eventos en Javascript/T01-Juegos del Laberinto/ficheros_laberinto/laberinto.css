@@ -1,0 +1,131 @@
+h1, h2 {
+	text-align: center;
+}
+
+p {
+	width: 600px;
+	margin: 1em auto;
+}
+
+#laberinto {
+	margin: auto;
+	position: relative;
+	height: 300px;
+	width: 700px;
+}
+
+#inicio, #fin {
+	position: absolute;
+	top: 205px;
+	height: 30px;
+	width: 30px;
+	border: 1px solid black;
+	padding: 5px;
+	
+	font-family: "Helvetica", "Arial", sans-serif;
+	font-size: 25pt;
+	text-align: center;
+	border-radius: 2px;
+}
+
+#laberinto #inicio {
+	background-color: #006400;
+	color:#fff;
+	left: 0;
+}
+
+#laberinto #fin {
+	background-color: #8888ff;
+	right: 0px;
+	top:55px;
+	bottom: 200px;
+}
+
+div.bloque {
+	background-color:#A0522D;
+	border: 1px solid black;
+}
+
+div.bloque.ejemplo {
+	margin: auto;
+	width: 100px;
+	height: 25px;
+}
+
+div.youlose {
+	background-color: #FFD700;
+}
+
+/*
+Utilizamos "sibling selectors" para evitar utilizar ids en los div del laberinto
+*/
+
+#laberinto div.bloque {
+	position: absolute;
+	
+	top: 0;
+	left: 0;
+	height: 200px;
+	width: 150px;
+	z-index: 1;
+}
+
+#laberinto div.bloque + div.bloque {
+	border-left: none;
+	border-right: none;
+	z-index: 2;
+	
+	left: 151px;
+	height: 50px;
+	width: 198px;
+}
+
+#laberinto div.bloque + div.bloque + div.bloque {
+	border-left: 1px black solid;
+	border-right: 1px black solid;
+	z-index: 1;
+	
+	left: 348px;
+	height: 200px;
+	width: 150px;
+}
+
+#laberinto div.bloque + div.bloque + div.bloque + div.bloque {
+	border: 1px black solid;
+	
+	top: 250px;
+	left: 0;
+	height: 48px;
+	width: 698px;
+}
+
+#laberinto div.bloque + div.bloque + div.bloque + div.bloque + div.bloque {
+	border-bottom: none;
+	
+	top: 100px;
+	left: 200px;
+	height: 150px;
+	width: 98px;
+}
+
+#laberinto div.bloque + div.bloque + div.bloque + div.bloque + div.bloque + div.bloque {
+	border: 1px black solid;
+	border-left: none;
+	
+	z-index: 2;
+	
+	top: 0px;
+	left: 499px;
+	height: 50px;
+	width: 199px;
+}
+
+#laberinto div.bloque + div.bloque + div.bloque + div.bloque + div.bloque + div.bloque + div.bloque  {
+	border: 1px black solid;
+	border-bottom: none;
+	
+	top: 100px;
+	left: 550px;
+	height: 150px;
+	width: 149px;
+}

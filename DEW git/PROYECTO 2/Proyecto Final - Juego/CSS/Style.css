@@ -1,0 +1,226 @@
+@font-face {
+            font-family: "danube";
+            src: url(../Font/DANUBE__.TTF) format("truetype");}
+        
+        h1{
+            color: white;
+            margin-left:170px;
+            font-size: 50px;
+            font-family: "danube";
+            float: left;
+        }
+        
+        h2{
+            color: white;
+            margin-left:250px;
+            font-size: 50px;
+            font-family: "danube";
+        }
+        
+        img{
+            margin-left: 150px;
+            margin-top: 30px;
+            width: 380px;
+            height: 65px;
+        }
+        
+        .Boton_Menu{
+            -webkit-transition: border-radius 1s, color 1s;
+            font-family: "danube";
+            font-size: 30px;
+            color: #EEE;
+            
+            margin: 30px;
+            padding: 10px;
+            width: 300px;
+            
+            background: none;
+            text-shadow: 0px 0px 8px white;
+            
+            border:1px solid #dedede;
+            border-radius: 3px;
+            text-decoration: none;
+            
+            border-color: #8dc5da #76b7cf #63abc7;
+            box-shadow: 0px 3px 5px rgba(255,255,255,0.5);
+            
+        }
+        
+        .Boton_Menu:hover{
+            border-radius: 20px;
+            text-shadow: 0px 0px 50px white;
+            color: white;
+        }
+        
+        .Boton_Menu:active{
+            text-shadow: 0px 0px 20px #00FF00;
+        }
+        
+        .Boton_Opcion{
+            -webkit-transition: border-radius 1s, color 1s;
+            font-family: "danube";
+            font-size: 15px;
+            color: #EEE;
+            
+            margin: 5px;
+            padding: 5px;
+            width: 100px;
+            
+            background: none;
+            text-shadow: 0px 0px 8px white;
+            
+            border:1px solid #dedede;
+            border-radius: 3px;
+            text-decoration: none;
+            
+            border-color: #8dc5da #76b7cf #63abc7;
+            box-shadow: 0px 3px 5px rgba(255,255,255,0.5);
+        }
+        
+        .Boton_Opcion:hover{
+            border-radius: 20px;
+            text-shadow: 0px 0px 50px white;
+            color: white;
+        }
+        
+        .Boton_Opcion:active{
+            text-shadow: 0px 0px 20px #00FF00;
+        }
+        
+        #lienzo{
+            top: 40%; 
+            left: 40%; 
+            margin-top: -224px; 
+            margin-left: -450px; 
+        }
+        
+        #menu{
+            
+            top: 40%; 
+            left: 40%; 
+            margin-top: -224px; 
+            margin-left: -450px;
+            width: 900px;
+            height: 448px;
+            background-image: url(../Img/MenuJuego.gif);
+        }
+        #GameOver{
+            top: 40%; 
+            left: 40%; 
+            margin-top: -224px; 
+            margin-left: -450px;
+            width: 900px;
+            height: 448px;
+            background-image: url(../Img/GameOver.jpg);
+        }
+        
+        #GameWin{
+            top: 40%; 
+            left: 40%; 
+            margin-top: -224px; 
+            margin-left: -450px;
+            width: 900px;
+            height: 448px;
+            background-image: url(../Img/GameWin.jpg);
+        }
+        
+        .hidden{
+           visibility: hidden;
+        }
+        .visible{
+            visibility: visible;
+        }
+        .frame{
+            position: absolute;
+        }
+        
+        progress[value] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+     
+    /* Quito el borde que aparece en Firefox */
+            border: none;
+            
+    /* Añado mis propios estilos */
+            width: 270px;
+            height: 30px;
+            overflow:hidden;
+     
+/*  Estos estilos solo se aplicaran al fondo de la barra en mozilla */
+        border:1px inset #666;
+        background-color:#D8D8D8;
+        border-radius : 20px;
+        }
+        progress::-moz-progress-bar{
+            background: #FF8000;
+            border-radius : 20px;
+        }
+        progress::-webkit-progress-value {
+            background: #FF8000;
+            border-radius : 20px;  
+        }
+ 
+        progress::-webkit-progress-bar {
+            background-color:#D8D8D8;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset; /*esta sombra es para simular el borde que he aplicado arriba para Mozilla*/
+            border-radius : 20px ;         
+        }
+        body{
+            background-image: url(../Img/FondoMenu2.jpg); 
+            background-repeat:no-repeat;
+            background-size:cover;
+        }
+        
+        .Text_Carga{
+            color: white;
+            margin-left:200px;
+            font-size: 50px;
+            font-family: "danube";
+        }
+        
+        .cargando{
+            margin-top: 25%;
+            margin-left: 80%;
+
+        }
+        #Pant_Carga{
+            position: absolute;
+        }
+        
+        #Manual{
+            margin-top:5%;
+            margin-left:25%;
+        }
+        
+        .TitManual{
+            color: red;
+            text-decoration: underline;
+            font-size: 50px;
+            font-family: "danube";
+            
+        }
+        .contenido{
+            color: red;
+            font-size: 15px;
+            font-family: "danube";
+        }
+
+        #Puntos{
+            color: white;
+            margin-top:5%;
+            margin-left:25%;
+        }
+        
+        .TituloPuntos{
+            font-size: 50px;
+            font-family: "danube";
+            
+        }
+        .ContenidoPuntos{
+            color: red;
+            margin-top: 50px;
+            font-size: 45px;
+            text-align: center;
+            font-family: "danube";
+        }

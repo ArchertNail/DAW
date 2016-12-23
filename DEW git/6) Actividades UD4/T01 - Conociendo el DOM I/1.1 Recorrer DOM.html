@@ -1,0 +1,91 @@
+<html>
+<head>
+  <title>JavaScript y el Document Object Model</title>
+</head>
+<body>
+  <div id="page">
+    <div id="header"><h1 id="title">titulo</h1></div>
+    <div id="content">
+      <h2 id="pepe">contenido del titulo</h2>
+      <p>algo copiado iria aqui</p>
+      <p>mas cosas aqui</p>
+    </div>
+    <input type="button" value="Actividad01" onclick="Actividad01()">
+    <input type="button" value="Actividad02" onclick="Actividad02()">
+    <input type="button" value="Actividad03" onclick="Actividad03()">
+    <input type='button' value='BorrarNodo' onclick='Borrar()'>
+  </div>
+  <script>
+      function Actividad01(){
+          
+          //1)Utiliza la propiedad firstChild para acceder a un elemento.
+          var firstchild=document.getElementById('content').firstElementChild.style.color='red';
+          
+          //2)Utiliza la propiedad lastChild para acceder a un elemento.
+          var lastchild= document.getElementById('content'); alert(lastchild.lastElementChild.nodeName);
+          
+          //3)Utiliza la propiedad nextSibling para acceder a un elemento.
+          var NextSiblig=document.getElementById('header'); alert(NextSiblig.nextElementSibling.nodeName);
+          
+          //4)Utiliza la propiedad previousSibling para acceder a un elemento.
+          var lastchild2=document.getElementById('content').lastElementChild;
+          var Previous= lastchild2.previousElementSibling.innerHTML;  alert(Previous); 
+          
+          //5)Utiliza la propiedad parentNode para acceder a un elemento.
+          var ParentN=document.body.parentNode.nodeName; alert(ParentN);
+          
+          //6)Utiliza la propiedad childNodes para acceder a un grupo de elementos hijo.
+          var ChildN=document.getElementById('content').childElementCount; alert(ChildN);
+      }
+      
+      function Actividad02(){
+          
+          //1)Recupera el valor de un nodo empleando nodeValue.
+          alert(document.getElementsByTagName("p")[1].firstChild.nodeValue);
+          
+          //2)Cambia el valor de un nodo usando nodeValue.
+          document.getElementsByTagName("p")[0].firstChild.nodeValue="PETER";
+          
+          //3)Recupera el valor del atributo de un nodo.
+          alert(document.getElementsByTagName("h2")[0].getAttribute("id"));
+          
+          //4)Cambia el valor del atributo de un nodo.
+          document.getElementsByTagName("h2")[0].setAttribute("id","juan");
+             alert(document.getElementsByTagName("h2")[0].getAttribute("id"));
+      }
+      
+      function Actividad03(){
+          
+          //1)Utiliza el método appendChild para añadir un nodo.
+          
+          var nodo = document.createElement("p");
+          var TextNodo= document.createTextNode("NuevoTextNodo");
+          nodo.appendChild(TextNodo);
+          document.getElementById('content').appendChild(nodo);
+          
+          //2)Utiliza el método insertBefore para añadir un nodo.
+          
+          var nodo2 = document.createElement("p");
+          var TextNodo2= document.createTextNode("NodoNumero2");
+          nodo2.appendChild(TextNodo2);
+          var ParrafoAnterior=document.getElementById('content');
+          
+          ParrafoAnterior.insertBefore(nodo2, ParrafoAnterior.childNodes[2]);
+          
+          //4)Utiliza el método replaceChild para reemplazar un nodo
+          
+          var TextNodo3= document.createTextNode("NODO REEMPLAZDO");
+          var ParrafoAReemplazar=document.getElementById('content');
+          
+          ParrafoAnterior.replaceChild(TextNodo3, ParrafoAnterior.childNodes[1]);
+      }
+      
+      function Borrar(){
+          //3)Utiliza el método removeChild para eliminar un nodo.
+              var BorrarNodo= document.getElementById('content');
+              BorrarNodo.removeChild(BorrarNodo.childNodes[3]);
+        }
+  </script>
+    
+</body>
+</html>
