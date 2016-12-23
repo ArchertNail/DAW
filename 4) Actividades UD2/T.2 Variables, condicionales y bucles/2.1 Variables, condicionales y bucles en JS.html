@@ -1,0 +1,325 @@
+<!doctype html>                              
+<html>
+<head>
+<meta charset="utf-8">
+<title>Primer Script </title>
+
+<style>
+
+#imagen1,#imagen2,#imagen3{
+ 
+    width: 5%;
+    height: 5%;
+    margin: 1%;
+    
+}
+
+input{
+    
+    margin-top: 0.3%;
+}
+
+</style>    
+    
+<script type="text/javascript">
+   
+    function actividad01(){
+     
+        var num1 = prompt("Introduce el 1º número");
+        var num2 = prompt("Introduce el 2º número");
+        var num3 = prompt("Introduce el 3º número");
+        var num4 = prompt("Introduce el 4º número");
+        
+        if (num1<num2 && num1<num3 && num1<num4){
+            
+            document.write("El menor de los números es: " + num1); 
+            
+        }
+        else if (num2<num1 && num2<num3 && num2<num4){
+            
+            document.write("El menor de los números es: " + num2); 
+        }
+        else if (num3<num1 && num3<num2 && num3<num4){
+            
+            document.write("El menor de los números es: " + num3); 
+        }
+        else{
+            
+            document.write("El menor de los números es: " + num4); 
+        }
+                
+        
+    }
+    
+    function actividad02(){
+        
+        var num1 = parseInt(prompt("Introduce el 1º número"));
+        var num2 = parseInt(prompt("Introduce el 2º número"));
+        var num3 = parseInt(prompt("Introduce el 3º número"));
+        
+        var suma = num1 + num2 + num3;
+        
+        alert("La suma de los tres numeros es: " + suma);
+    }
+    
+    function actividad03(){
+        
+        var num1 = parseFloat(prompt("Introduce el 1º número"));
+        var num2 = parseFloat(prompt("Introduce el 2º número"));
+        var num3 = parseFloat(prompt("Introduce el 3º número"));
+        
+        var suma = num1 + num2 + num3;
+        
+        alert("La suma de los tres numeros es: " + suma);
+    }
+    
+    function actividad04(){
+        
+        var nota1 = parseFloat(prompt("Introduce tu nota de Matematicas:"));
+        var nota2 = parseFloat(prompt("Introduce tu nota de Historia:"));
+        var nota3 = parseFloat(prompt("Introduce tu nota de Lengua:"));
+        
+        var media = (nota1 + nota2 + nota3)/3;
+        
+        if(media >=7){
+        
+            alert("Estas ¡Promocionado" );
+        }
+        else{
+            
+            alert("Has suspendido");   
+        }
+    }
+    
+    function actividad05(img){
+        
+        alert(img);
+        
+    }
+    
+    function actividad06(){
+        
+        var num1 = prompt("Introduce un numero");
+        var result =num1*3;
+        alert(result);
+        
+    }
+    
+    function actividad07(){
+        
+        var num1 = parseFloat(prompt("Introduce un numero a multiplicar"));
+        var num2 = parseFloat(prompt("Introduce el numero que sumaras:"));
+        var result = (num1*3)+num2; 
+        
+        alert ("("+num1+"*"+3+") +"+num2+" = " + result);
+    }
+    
+    function actividad08(){ 
+        
+        var num=parseInt(prompt("Introduce un numero"));
+        
+        var contador =1;
+        
+        var contador2 = 0;
+        
+        while ( contador <= num){
+         
+            contador *=10;
+            
+            contador2++;
+            
+        }
+        
+        alert("El numero tiene: " + contador2 + "digitos");
+    }
+    
+
+    function actividad09(){
+        
+        var cadena = prompt("Introduce una de estas opciones (profesor/manzana/servidor/mar)");
+        
+        if (cadena =="profesor" || cadena=="PROFESOR" || cadena=="Profesor"){
+            
+            alert( cadena + " --> " + "Teacher");
+        }
+        else if(cadena=="manzana" || cadena=="MANZANA" || cadena=="Manzana"){
+            
+            alert( cadena + " --> " + "Apple");   
+        }
+        
+        else if(cadena=="servidor" || cadena=="SERVIDOR" || cadena=="Servidor"){
+            
+            alert( cadena + " --> " + "Server");   
+        }
+        else if(cadena=="mar" || cadena=="MAR" || cadena=="Mar"){
+            
+            alert( cadena + " --> " + "Sea");   
+        }
+        else{
+            alert("No has introducido correctamente una de las opciones");
+        }
+        
+    }
+    
+    function actividad10(){
+     
+        var fecha = parseInt(prompt("En que año nacio?"));
+        
+        var anio = new Date();
+        
+        var edad = anio.getFullYear() - fecha;
+        
+        var edad2 = edad - 1;
+        
+        alert ("Tienes: " + edad + " o " + edad2 + " anios");
+        
+    }
+    
+    function actividad11(){ //cod. interesante
+        
+        var alumno = [];
+        
+        document.write("<h2> Datos del alumno: </h2>");
+        
+        for (var i =0; i<3; i++){
+            
+            if (alumno[0] ==alumno[i]){
+                
+                alumno[0] = prompt("introduce el nombre"); 
+                
+                document.write("<h2> Nombre:" + alumno[i] + "</h2>");
+            }
+            else if (alumno[1] == alumno[i]){
+             
+                alumno[1] = parseInt(prompt("Intruce el nº de preguntas"));
+                document.write("<h2> Preguntas: " + alumno[i] + "</h2>");
+                
+            }
+            
+            else if ( alumno[2] == alumno[i]){
+                
+                alumno[2] = parseInt(prompt("Introduce el nº de preguntas acertadas"));  
+                document.write("<h2> Preguntas acertadas: " + alumno[i] + "</h2>");
+            }
+                
+            
+        }
+        
+        var resta = alumno[1] - alumno[2];
+        var porcentaje1 = (resta / alumno[1]) * 100; 
+        var porcentaje2 = 100 - porcentaje1;
+        
+        if ( porcentaje2 >= 90){
+            
+            document.write("<h1> Nivel A </h1>");    
+        }
+        
+        else if ( porcentaje2 >= 75 && porcentaje2<90){
+            
+            document.write("<h1> Nivel B </h1>");    
+        }
+        
+        else if ( porcentaje2 >= 50 && porcentaje2<75){
+            
+            document.write("<h1> Nivel C </h1>");    
+        }
+        else{
+            
+            document.write("<h1> Nivel D </h1>");   
+        }
+    }
+    
+    function actividad12(){
+        
+        var num = prompt("Introduce un numero");
+        
+        for (var i =0; i<=10; i++){
+         
+            document.write("<strong>"+num + "x" +i + " = " + num * i + "</strong> <br>");
+        }
+        
+    }
+    
+    function actividad13(){ //cd. curioso   
+        
+        var numeros=[];
+        var pares =0;
+        var impares=0;
+        
+        for (var i=0; i<5; i++){
+            
+            
+            
+            numeros[i]=parseInt(prompt(i+1 + ")" + "Introduce un numero entero:"));
+            
+            if(isNaN(numeros[i])){
+                
+                alert("No introduzca caracteres");   
+            }
+            else{
+                
+            var resto = numeros[i]%2;
+            
+            if (resto == 0){
+                   
+                pares++;
+            }
+            else{
+                
+               impares++; 
+            }
+            }
+        }
+        
+        document.write("Pares: " + pares + "\n Impares: " + impares);
+    }
+    
+    function actividad14(anchura,simbolo){
+        
+        while (anchura>0){
+            
+            for (var i=0; i<anchura; i++){
+            
+                document.write(simbolo);
+            
+            }
+            document.write("<br>");
+            anchura--;
+        }
+    }
+    
+    /*function actividad14b (anchura, simbolo) {
+        for (var j=anchura;j>0; j--) {
+            for (var i=0; i<j; i++){
+                document.write(simbolo);
+            }
+            document.write("<br>");
+        }
+    }
+    */
+</script> 
+    
+</head>
+    
+<body>
+   
+        <input type="button" value="Actividad01" onclick="actividad01()"> <br>
+        <input type="button" value="Actividad02" onclick="actividad02()"> <br>
+        <input type="button" value="Actividad03" onclick="actividad03()"> <br>
+        <input type="button" value="Actividad04" onclick="actividad04()"> <br>
+        <img src="uno.jpg" id="imagen1" onclick= "actividad05(this.id)"> 
+        <img src="dos.jpg" id="imagen2" onclick= "actividad05(this.id)">
+        <img src="tres.jpg" id="imagen3" onclick= "actividad05(this.id)"> <br>
+        <a href="" onclick="actividad06()"> Actividad06</a> <br>
+        <a href="" onclick="actividad07()"> Actividad07</a> <br>
+        <input type="button" value="Actividad08" onclick="actividad08()"> <br>
+        <input type="button" value="Actividad09" onclick="actividad09()"> <br>
+        <input type="button" value="Actividad10" onclick="actividad10()"> <br>
+        <input type="button" value="Actividad11" onclick="actividad11()"> <br>
+        <input type="button" value="Actividad12" onclick="actividad12()"> <br>
+        <input type="button" value="Actividad13" onclick="actividad13()"> <br>
+        <input type="button" value="Actividad14" onclick="actividad14(30,'*')"> <br> 
+    
+</body>
+    
+</html>

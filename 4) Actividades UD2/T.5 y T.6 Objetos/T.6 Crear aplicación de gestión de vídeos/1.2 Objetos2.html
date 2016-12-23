@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Programación Orientada a Objetos</title>
+    
+    <script>
+        
+        function Objeto(){
+        
+            function video(titulo,propietario,segundos){
+
+                this.titulo=titulo;
+                this.propietario=propietario;
+                this.segundos=segundos;
+            }
+
+            video.prototype.mostrarConsola = function(){  //Estas funciones nos sirven por si tenemos muchos objetos que realizar la misma tarea. Podriamos en un InnerHtml= "Has visto todos los " + videomusical.titulo  y saldria igual sin tener que crear una funcion. Pero si tuviecemos mas VideosMusicales, estariamos todo el rato haciendo eso? 
+
+                return "Has visto todos los " + this.segundos + " segundos de " + this.titulo;
+
+            };
+
+            video.prototype.escuchastes= function(){
+
+                return "Has escuchado: " + this.titulo + " de " + this.propietario;  
+            };
+            
+            
+
+            var videoMusical1 = new video("Mejor que el silencio","Nach",150); 
+            var videoMusical2 = new video("Torero","Chayane",170);
+            var videoMusical3 = new video("Chandelier","SIA",240);
+            var videoMusical4 = new video("SuperGirl","Noa",190);
+            var videoMusical5 = new video("Hey Mama","David Geta",200);
+            
+            var VIDEOS = [videoMusical1,videoMusical2,videoMusical3,videoMusical4,videoMusical5];
+            
+            for ( var i=0; i<VIDEOS.length;i++){
+             
+               /* document.getElementById("Cancion").innerHTML=VIDEOS[i].mostrarConsola();   ¿Como hago para que no machaque la <p>
+                document.getElementById("escuchastes").innerHTML=VIDEOS[i].escuchastes();*/
+                
+                document.write(VIDEOS[i].mostrarConsola() + "<br>");
+                document.write(VIDEOS[i].escuchastes() + "<br> <br>");
+                
+                
+            }
+            
+        }
+    </script>
+    
+</head>
+
+<body>
+
+ <input type="button" value="Start" onclick="Objeto()">
+ <p id="Cancion"></p>
+ <p id="escuchastes"></p>
+
+    
+</body>
+</html>

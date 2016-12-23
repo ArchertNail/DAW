@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Programación Orientada a Objetos</title>
+    
+    <script>
+        
+        function actividad01(){
+        
+            var persona = new Object();
+
+            persona.nombre="Juan";
+            persona.apellido="Perez";
+            persona.edad=19;
+
+            persona.datos=function(){   //personas.datos tendra el valor que guarde la funcion;
+
+                return persona.nombre;
+            }
+
+            document.getElementById("actividades").innerHTML=( persona.datos());
+        }
+        
+        function actividad02(){
+            
+            var coche= {color: "rojo", ruedas: 4, motor:"Forja"};
+            var dato="";//tenemos que darlo vacio pues sino se añadira "Undefined" al resto del texto que queramos añadir.
+            
+                function datos(){
+
+                    for (var i in coche){
+
+                        dato+="El coche tiene " + i + ": " + coche[i] + "<br>";
+                    }
+                    
+                    return dato;
+                 } 
+            
+                document.getElementById("actividades").innerHTML=datos(); //Poque no me aparece debajo? Porque usabamos un document.Write para imprimir el valor a llamar la funcion.
+            }
+        
+        function actividad03(){
+         
+            var datoNau="";
+            var datoMigel="";
+            
+            function Contactos(nombre,apellido,correo,fijo,movil,twiter,linkedin){  //Esto es un Objeto-funcion
+                
+                this.nombre=nombre,                  //En vez de usar Contacto.nombre, Ponemos el THIS asi cuando entre un nuevo objeto 
+                this.apellido=apellido,              //sera él el que se esta usando. Si ponemos Contacto, siempre se estara usando el 
+                this.correo=correo,                  //mismo objeto y cuando querramos poner Nau.Nombre saldra UNDEFINED pues el valor
+                this.fijo=fijo,                      //se ha cambiado pero no hemos podido acceder donde se guarda pues donde se guarda
+                this.movil=movil,                    //es en Contacto.Nombre
+                this.twiter=twiter,
+                this.linkedin=linkedin}
+            
+            /*Preguntas: 
+                    
+                        2) Como podriamos meter introducir valores a un objeto por Prompt. 
+                            
+                                */
+
+            Contactos.prototype.Agenda= function(){
+                
+               return this.nombre +"<br>"+ this.apellido+"<br>" + this.correo +"<br>"+ this.fijo +"<br>"+ this.movil +"<br>"+ this.twiter+"<br>" + this.linkedin;
+            
+            }
+            
+            
+            var Migel = new Contactos("Migel","Jaime","Migel@gmail.com",9222222,66666666,"JaimeTwit","JaimeLink");
+            
+                  
+            document.write(Migel.Agenda());
+        }
+
+    </script>
+    
+</head>
+
+<body>
+    
+    <input type="button" value="Actividad01" onclick="actividad01()">
+    
+    <input type="button" value="Actividad02" onclick="actividad02()">
+    
+    <input type="button" value="Actividad03" onclick="actividad03()">
+    
+    
+    <p id="actividades"></p>
+    <p id="actividades2"></p>
+
+    
+</body>
+</html>

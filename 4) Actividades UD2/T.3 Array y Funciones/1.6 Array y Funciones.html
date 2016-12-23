@@ -1,0 +1,303 @@
+<!doctype html>                              
+<html>
+<head>
+<meta charset="utf-8">
+<title>Array y Funciones </title>
+
+    
+    <script>
+        var clientes = [];
+        var tiempo = [];
+        var contador = 0
+        
+        
+        function NuevoCliente(){
+
+            clientes[contador]=prompt("Introduce el nombre del cliente");
+            
+            do{
+                tiempo[contador]=parseFloat(prompt("Introduce el tiempo que lleva estacionado"));
+            
+                if (isNaN(tiempo[contador])){
+            
+                    alert("Introduce una hora correcta");
+                
+                } 
+                else if (tiempo[contador]<=0){
+                    
+                    alert("No introduzca una menor o i");   
+                }
+                
+            }while(isNaN(tiempo[contador]) || tiempo[contador]<0);
+            
+            contador++;
+            
+        alert("El cliente se ha introducido correctamente");
+     }
+        
+        function MostrarClientes(){
+            
+            //document.write("<h1> Clientes: </h1>"); 
+            
+            
+            for (var i=0; i<clientes.length; i++){
+                
+                document.write("<h3> Nombre: " + clientes[i] + " -- T.Estacionamiento: " + tiempo[i] + "h</h3>"); 
+                
+                var dia = tiempo[i];
+                var importe1 = 0;
+                
+                while (dia > 24){
+                    
+                    dia = dia-24;  
+                    var importe1 = importe1 + 10;
+                }
+                
+                if (dia <= 3){
+                    
+                    var importe= 2 + importe1;
+            
+                     document.write("<h2> Importe: " + importe + "€ </h2>");
+                   
+                }
+                
+                else if(dia>=4 && dia<=7){
+                    
+                    var importe = 2 + ((tiempo[i]-3) * 0.50) + importe1;
+                    document.write("<h2> Importe: " + importe + "€ </h2>");
+                    
+                }
+                else if(dia>=8 && dia<=10){
+                 
+                    var importe = tiempo[i] * 0.50 + importe1;
+                    document.write("<h2> Importe: " + importe + "€ </h2>");
+                    
+                }
+                else if(dia>=11 && dia<=24){
+                    
+                    var importe =10 + importe1;
+                    document.write("<h2> Importe: " + importe + "€ </h2>"); 
+                   
+                }
+                
+                    
+            }
+            
+            //document.write("<input type='button' onClick='botones()' value='regresar'>");
+            
+        }
+        
+        function ImporteTotal(){
+            
+            var total=0;
+         
+            for (var i=0; i<clientes.length; i++){
+                
+                var dia = tiempo[i];
+                var importe1 = 0;
+                
+                while (dia > 24){
+                    
+                    dia = dia-24;  
+                    var importe1 = importe1 + 10;
+                }
+                
+                if (dia <= 3){
+                    
+                    var importe= 2 + importe1;
+            
+                     
+                    total = total + importe;
+                }
+                
+                else if(dia>=4 && dia<=7){
+                    
+                    var importe = 2 + ((tiempo[i]-3) * 0.50) + importe1;
+                    
+                    total = total + importe;
+                }
+                else if(dia>=8 && dia<=10){
+                 
+                    var importe = tiempo[i] * 0.50 + importe1;
+                  
+                    total = total + importe;
+                }
+                else if(dia>=11 && dia<=24){
+                    
+                    var importe =10 + importe1;
+                     
+                    total = total + importe;
+                }
+                
+                    
+            }
+            
+            document.write("El total es: " + total);
+            
+        }
+        
+        function botones(){ //Porque de un boton desde el body sale una pagina nueva, pero un boton desde el script se mantiene en la pagina?
+            
+            document.write("<input type='button' onClick='NuevoCliente()' value='NewCliente'>" + "<br>");
+            document.write(" <input type='button' onClick='MostrarClientes()' value='Mostrar Clientes'>" + "<br>");
+            document.write("<input type='button' onClick='ImporteTotal()' value='Total'>" + "<br>");
+        } 
+        
+    </script>
+    
+</head>
+
+
+<body>
+
+    <input type='button' onClick='NuevoCliente()' value='NewCliente'>
+    <input type='button' onClick='MostrarClientes()' value='Mostrar Clientes'>
+    <input type='button' onClick='ImporteTotal()' value='Total'>
+   
+</body>
+    
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+
+        <button type="button" onclick=NuevoCliente()>Nuevo cliente</button><br><br>
+        <button type="button" onclick=CalculaCargos()>Mostrar Factura Cliente</button><br><br>
+        <button type="button" onclick=Total()>Mostrar Ingresos</button><br><br>
+        <script>
+
+            var clientes = [];
+            var horas = [];
+            var inicio = 0;
+                  
+            
+            function NuevoCliente(){
+            
+
+                    do{
+
+                        clientes[inicio] = prompt("introduzca el nombre del cliente");
+                        
+                           if(!isNaN(clientes[inicio])){
+                    
+                            
+                                alert("debe introducir letras");
+                        }
+                    
+                        horas[inicio]= parseFloat(prompt("introduzca el tiempo que lleva estacionado"));
+
+                        if(isNaN(horas[inicio])){
+
+                            alert("Introduce una hora correcta");
+                        }else if(horas[inicio]<0){
+
+                            alert("introduce numeros positivos");
+                        }
+
+
+                    }while(isNaN(horas[inicio]) || horas[inicio] < 0);
+
+                    inicio++;
+
+                    alert("el cliente se ha introducido correctamente");
+            
+            }
+            
+            
+                
+    function CalculaCargos(){
+                
+                
+                document.write("<h1>Clientes</h1>");
+                
+                     var total = 0;
+    
+                    for(var i=0; i<clientes.length; i++){
+                    
+                        document.write("<h3>Nombre: "+clientes[i] + " Tiempo: "+ horas[i] + "h</h3>");
+                          
+                         var dia = horas[i];
+                         var importe1 = 0;
+                        
+                        
+                        while(dia > 24){
+                            
+                            dia = dia-24;
+                            var importe1 = importe1 + 10;
+                          
+                        }
+                        
+                        if(dia <= 3){
+                             
+                            var importe = 2 +importe1; 
+                            document.write("Usted ha de pagar: "+importe+" €");
+                            total = total + importe;
+                           
+                            
+                        }else if(dia >= 4 && dia<= 7){
+
+                        var importe = 2 + ((horas[i]-3) * 0.50) + importe1; 
+                        document.write("Usted ha de pagar: "+importe+" €");
+                        total = total + importe;
+    
+
+                       }else if(dia >= 8 && dia <= 10){
+
+                            var importe = horas[i] * 0.50 + importe1; 
+                            document.write("Usted ha de pagar: "+importe+" €");
+                           total = total + importe;
+
+                           
+                       }else if(dia >= 11 && dia <= 24){
+
+                             var importe = 10 +importe1; 
+                             document.write("Usted ha de pagar: "+importe+" €");
+                             total = total + importe;
+
+
+                        }
+                        
+                        console.log(total); 
+                        }
+                                      
+                    document.write("<br><br>");
+                    document.write("<button type=button onclick=CalculaCargos()>Mostrar Factura Cliente</button><br><br>");
+                    var confirmar = confirm("Desea realizar otro cobro?");
+                    
+                    if(confirmar == true){
+                    
+                            NuevoCliente();
+                            
+                    
+                    }else{
+                    
+                        alert("Gracias por su visita");
+                    }
+                    
+     }
+    
+            
+            
+            
+        </script>
+    
+    
+    </body>
+</html>-->

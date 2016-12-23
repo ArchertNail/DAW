@@ -1,0 +1,71 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Calcular mcd</title>
+<script>
+function mcd(myform)
+ { 
+     
+   var num1 = myform.a.value;
+    
+   var num2 = myform.b.value;
+     
+     while (num2 !=0){
+         
+         var rest = num1 % num2;
+         num1 =num2; 
+         num2= rest;
+     }
+     
+     var mcd = num1;
+     
+     myform.valor.value = mcd;
+ 
+ }
+</script>
+</head>
+
+<body>
+<p><font size="5">Calcular mcd</font><p>
+
+<form name="myform">
+<table border=5 cellspacing="3" cellpadding="3">
+<tr>
+<td width=200>
+<p align="center">
+Primer número
+<br>
+<input type=text name=a>
+</p>
+</td>
+<td width=200>
+<p align="center">
+Segundo número
+<br>
+<input type=text name=b>
+</p>
+</td>
+</tr>
+<tr>
+<td colspan=2 align=center>
+<input type="button" value="Calcular" onClick="mcd(myform)">
+<input type="reset" value=" Borrar ">
+</td>
+</tr>
+<tr>
+<td colspan=2>
+<p align="center">
+Máximo común divisor
+<br>
+<input type=text name=valor size="20">
+</p>
+</td>
+
+</tr>
+</table>
+</form>
+
+</body>
+
+
+</html>

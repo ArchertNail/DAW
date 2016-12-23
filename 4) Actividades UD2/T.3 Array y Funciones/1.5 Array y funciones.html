@@ -1,0 +1,140 @@
+<!doctype html>                              
+<html>
+<head>
+<meta charset="utf-8">
+<title>Array y Funciones </title>
+
+    
+<script>
+    
+    NombreAlumnos = ["Juan", "Maria", "Pedro", "Lucia", "Jon", "Martin", "James", "Felipe", "Jorge", "Nuria"]; 
+    NotaAlumnos = [9,10,4,5,8,4,6,1,3,9];
+    var contador =0;
+    
+    function Buscar(){
+        
+        var alumno= prompt("Introduce el nombre del alumno que deseas buscar");    
+        
+        for (var i=0; i<NombreAlumnos.length;i++){
+         
+            if (alumno == NombreAlumnos[i]){
+             
+                document.write(" <h2> Nombre: " + alumno + "</h2> <h2> Nota: " + NotaAlumnos[i]);
+                break;
+            }
+            
+            contador++;
+        }
+        
+        if (contador == 10){
+            
+         alert("No se ha encontrado el alumno");   
+        }
+        
+    }
+       
+    function Modificar(){
+     
+        var alumno = prompt("Introduce el nombre del alumno del que quieres modificar su nota");
+        
+        for (var i=0; i<NombreAlumnos.length;i++){
+         
+            if (alumno == NombreAlumnos[i]){
+             
+                var nota = parseFloat(prompt("¿Que nota deseas ponerle?"));
+                if (isNaN(nota)){ //si no es numero 
+                    alert("No has introducido un numero");   
+                }
+                else if (nota<0){
+                    
+                 alert("No puedes meter notas negaticas");   
+                }
+                else{
+                    NotaAlumnos[i] = nota;
+                    alert("La nota ha sido cambiada");
+                }
+                break;
+            }
+            
+        }  
+    }
+    
+    function Media(){
+        
+        var suma=0;
+        
+        for(var i=0; i<NotaAlumnos.length; i++){
+            
+            suma= suma + NotaAlumnos[i];
+        }
+        
+        var media = suma/NombreAlumnos.length;
+        document.write("<h1>Media: " + media + "</h1>");
+    }
+    
+    function MediaMenor(){
+
+        var suma=0;
+        var contador=0;
+        
+        for(var i=0; i<NotaAlumnos.length; i++){
+            
+            if (NotaAlumnos[i]<5){
+    
+                suma= suma + NotaAlumnos[i];
+                contador++;//Con que haces media? pues con la catidad de notas que sean menor a 5
+            }
+        }
+        
+        var media = suma/contador;
+        document.write("<h1>Media Menor(5): " + media + "</h1>");
+    }
+    
+    function MejorAlumno(){
+        
+        var notaprevia=0;
+        var alumno;
+        
+        for (var i=0; i<NombreAlumnos.length; i++){
+            
+            if(NotaAlumnos[i]>notaprevia){
+                
+                notaprevia = NotaAlumnos[i];
+                alumno = NombreAlumnos[i];
+            }
+        }
+        
+        document.write("El Mejor alumno es: " + alumno + "<br> La nota es de: " + notaprevia);
+    }
+    
+    function PeorAlumno(){
+        
+        var notaprevia=10;
+        var alumno;
+        
+        for (var i=0; i<NombreAlumnos.length; i++){
+            
+            if(NotaAlumnos[i]< notaprevia){
+                
+                notaprevia = NotaAlumnos[i];
+                alumno = NombreAlumnos[i];
+            }
+        }
+        
+        document.write("El Peor alumno es: " + alumno + "<br> La nota es de: " + notaprevia);
+    }
+    
+</script>
+    
+</head>
+    
+<body>
+        <input type="button" value="Buscar Alumno" onclick="Buscar()"> <br>
+        <input type="button" value="Modifica Nota" onclick="Modificar()"> <br>
+        <input type="button" value="Media Notas" onclick="Media()"> <br>
+        <input type="button" value="Media Menores 5" onclick="MediaMenor()"> <br>
+        <input type="button" value="Mejor Alumno" onclick="MejorAlumno()"> <br>
+        <input type="button" value="Peor Alumno" onclick="PeorAlumno()"> <br>
+</body>
+    
+</html>

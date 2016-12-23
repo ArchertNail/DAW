@@ -1,0 +1,160 @@
+<!doctype html>                              
+<html>
+<head>
+<meta charset="utf-8">
+<title>Array y Funciones </title>
+
+    
+    <script>
+        
+        function actividad01(){
+            
+            var array = [];
+
+            var primero = parseFloat(prompt("Escribe un numero mayor"));
+            var segundo = parseFloat(prompt("Escribe un numero menor"));
+
+            if(primero > segundo){
+                
+                document.write("Has introducido un numero mayor");
+
+            } 
+            else if(primero <= segundo){
+                   
+                for(var i = 0; primero <= segundo ;i++,primero++){        
+                    
+                    array[i] = primero;
+                    document.write(array[i] + ", ");
+                 }
+             }        
+             else if (segundo <= primero){
+                 
+                  for(var i = 0; segundo <= primero ;i++,segundo++){        
+                    
+                      array[i] = segundo;
+                    document.write(array[i] + ", ");
+                  }
+             }
+            else if(isNaN(primero) || (isNaN(segundo))){
+                        
+                document.write("Has introducido un caracter");
+            } 
+
+        }
+
+        
+      function actividad02(){
+
+            var lista = [];
+
+            for(var x = 0; x < 10 ;x++){
+                
+                lista[x] = parseFloat(prompt("Escribe los numeros"));
+                 
+                if(isNaN(lista[x])){
+                    
+                    alert("Has introducido un carater");
+                    break;
+                 }
+             }
+                    
+            lista.sort(function(a, b){return a-b});
+//document.write(lista.sort()+"<br>");
+
+     //ordena los numeros intrucidos
+          document.write(lista[lista.length -1]);
+        }
+        
+        
+        function actividad03(){
+            
+            var resultado = 1;
+
+            var base = parseFloat(prompt("Escribe un número base"));
+            var exponente = parseFloat(prompt("Escribe el exponente"));
+            
+            if(isNaN(base) || (isNaN(exponente))){
+                
+                document.write("Has introducido un caracter");
+            } 
+                          
+            else if (exponente >= 0){
+                
+                for(var x = 0; x < exponente; x++){
+                    
+                    resultado = resultado * base;
+                }
+                 document.write(resultado);
+            }
+             
+            else if (exponente < 0){
+                exponente = exponente * (-1);
+                    for(var x = 0; x < exponente; x++){
+                        
+                        resultado = resultado * base;
+                    }
+                resultado = 1/resultado;
+                document.write(resultado);
+            }
+         
+        // document.write(base);
+        }
+     
+        
+        
+        function actividad04(){
+            
+            var lista = [];
+            var media = 0;
+
+
+            for (var i=0; i < 10; i++){
+                
+                lista[i] = parseFloat(prompt("Escribe los numeros"));
+                if (isNaN(lista[i])){
+
+                    alert("No introduzca Caracteres");
+                }
+                else{
+                
+                    media = media + lista[i];
+                }
+            }
+     
+                if(media == 0){
+
+                    document.write("Fallo"+"<br>"); 
+                }
+
+                else{
+                    media = media / lista.length;
+                    document.write(" la media es "+media+"<br>");
+                }
+
+                document.write("Los numeros superiores a la media son: ");
+
+                for(i = 0;i < lista.length;i++){
+
+                    if(media < lista[i]){
+
+                        document.write(lista[i]+" , ");                  
+                        }
+
+                }
+            }   
+    
+    </script>
+    
+</head>
+    
+<body>
+    
+    
+    <input type="button" value="actividad01" onclick="actividad01()">
+    <input type="button" value="actividad02" onclick="actividad02()">
+    <input type="button" value="actividad03" onclick="actividad03()">
+    <input type="button" value="actividad04" onclick="actividad04()">
+   
+</body>
+    
+</html>
