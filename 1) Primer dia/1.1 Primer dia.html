@@ -1,0 +1,53 @@
+<!doctype html>                              
+<html>
+<head>
+<meta charset="utf-8">
+<title>Primer dia</title>
+<link href="Estilos%20-%20Funciones.css" rel="stylesheet">
+<head>
+    
+<script>
+    
+    function actividad01(){
+    
+    alert("esto esta escrito en javascript");
+        
+    }
+    
+    function actividad02(){    
+        
+    document.write("<table>");
+     for(i=0; i<5; i++){
+        
+     document.writeln("<TR>");   
+        
+        for(j=0; j<5; j++){
+         
+            document.writeln("<TD> ["+i+","+j+"] </TD>");
+            
+        }
+        
+     document.writeln("</TR>");
+    }
+    
+    document.write("</table>");
+    
+    }
+    
+</script>
+    
+</head>
+ 
+    
+<body>
+    
+ <p>  Esto es una pagina html <b>normal</b> que incluye una pequeño codigo java scripts  </p> 
+
+<button onclick="actividad01()"> Act01 </button>
+<button onclick="actividad02()"> Act02 </button>
+    
+</body>
+    
+    
+
+</html>
